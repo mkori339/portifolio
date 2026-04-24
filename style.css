@@ -20,8 +20,24 @@
     bottom: 30px;
     transition: 0.5s;
     z-index: 99;
+    opacity: 0;
+    visibility: hidden;
 }
 
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
 /*** Button Start ***/
 .btn {
@@ -64,6 +80,7 @@
     align-items: center;
     justify-content: center;
     font-weight: normal;
+    transition: all 0.3s ease;
 }
 
 .btn.btn-primary {
@@ -74,18 +91,21 @@
 .btn.btn-primary:hover {
     background: var(--bs-dark);
     color: var(--bs-white);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn.btn-light {
     color: var(--bs-primary);
     border: none;
+    transition: all 0.3s ease;
 }
 
 .btn.btn-light:hover {
     color: var(--bs-white);
     background: var(--bs-primary);
+    transform: scale(1.1);
 }
-
 
 .pt-6 {
     padding-top: 60px;
@@ -103,13 +123,12 @@
     padding-bottom: 60px;
 }
 
-
 .sub-title {
     font-family: "Edu TAS Beginner", cursive;
     font-weight: 700;
     font-size: 22px;
+    animation: fadeInDown 0.6s ease;
 }
-
 
 .container-fluid {
     position: relative;
@@ -162,7 +181,6 @@
     }
 }
 
-
 /*** Navbar Start ***/
 .nav-section {
     position: relative;
@@ -193,7 +211,8 @@
     width: 100%;
     display: flex;
     align-items: center;
-    
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .navbar-nav .nav-link span {
@@ -218,20 +237,24 @@
     color: var(--bs-body);
     font-size: 14px;
     font-weight: 700;
-    transition: 0.5s;
+    transition: all 0.3s ease;
 }
 
-.nav-section .navbar .navbar-nav .nav-item:hover {
+.nav-section .navbar .navbar-nav .nav-item:hover,
+.nav-section .navbar .navbar-nav .nav-item.active {
     margin-right: calc(100% + 40px);
-    color: var(--bs-primary);
+    color: var(--bs-white);
+    background: var(--bs-primary);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
 }
-/*** Navbar End ***/
 
+/*** Navbar End ***/
 
 /*** About Start ***/
 .about-content .about-img {
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .about-content .about-img .sosial-icon {
@@ -241,27 +264,41 @@
     top: -100%;
     left: 0;
     padding: 50px;
-    background: rgba(0, 0, 0, .04);
-    transition: 0.5s;
+    background: rgba(0, 0, 0, 0.7);
+    transition: top 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
 
 .about-content .about-img:hover .sosial-icon {
     top: 0;
 }
-/*** About End ***/
 
+.about-content .about-img img {
+    transition: transform 0.5s ease;
+}
+
+.about-content .about-img:hover img {
+    transform: scale(1.05);
+}
+
+/*** About End ***/
 
 /*** Education Start ***/
 .education-content .education-item {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 0, 0, .03);
-    transition: 0.5s;
+    transition: all 0.5s ease;
     z-index: 1;
 }
 
 .education-content .education-item:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+    transform: translateY(-5px);
 }
 
 .education-content .education-item::after {
@@ -292,18 +329,18 @@
 }
 /*** Education End ***/
 
-
 /*** Experience start ***/
 .experience-content .experience-item {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 0, 0, .03);
-    transition: 0.5s;
+    transition: all 0.5s ease;
     z-index: 1;
 }
 
 .experience-content .experience-item:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+    transform: translateY(-5px);
 }
 
 .experience-content .experience-item::after {
@@ -318,7 +355,6 @@
     border: 100px solid;
     border-color: var(--bs-light) transparent var(--bs-light) var(--bs-light);
     z-index: -1;
-
 }
 
 .experience-content .experience-item::before {
@@ -335,10 +371,14 @@
 }
 /*** Experience End ***/
 
-
 /*** Skills Start ***/
 .skills-content .skills-item {
     position: relative;
+    transition: all 0.5s ease;
+}
+
+.skills-content .skills-item:hover {
+    transform: translateY(-10px);
 }
 
 .skills-content .skills-item::after {
@@ -351,32 +391,69 @@
     border-radius: 50% 50% 50% 50% / 28% 28% 72% 72%;
     background: var(--bs-light);
     z-index: -1;
+    transition: all 0.5s ease;
 }
-/*** Skills End ***/
 
+.skills-content .skills-item:hover::after {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.skills-content .skills-item i {
+    transition: all 0.5s ease;
+}
+
+.skills-content .skills-item:hover i {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--bs-primary);
+}
+
+.skills-content .skills-item h4 {
+    animation: countUp 2s ease-out;
+}
+
+/*** Skills End ***/
 
 /*** Service start ***/
 .service-content .service-item {
     box-shadow: 0 0 30px rgba(0, 0, 0, .03);
-    transition: 0.5s;
+    transition: all 0.5s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .service-content .service-item:hover i {
     color: var(--bs-primary);
-
+    transform: scale(1.2) rotate(-10deg);
 }
 
 .service-content .service-item:hover {
-    box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .15);
+    transform: translateY(-8px);
 }
+
+.service-content .service-item i {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
 /*** service End ***/
 
-
 /*** Portfolio Start ***/
+.portfolio-content .portfolio-item {
+    transition: all 0.5s ease;
+}
+
+.portfolio-content .portfolio-item:hover {
+    transform: scale(1.02);
+}
+
 .portfolio-content .portfolio-item .portfolio-img {
     position: relative;
     width: 100%;
     height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .portfolio-item .portfolio-img .portfolio-img-inner {
@@ -391,6 +468,7 @@
     width: 100%;
     height: 150px;
     object-fit: cover;
+    transition: all 0.6s ease;
 }
 
 .portfolio-content .portfolio-item .view-img {
@@ -401,25 +479,37 @@
 
 .portfolio-content .portfolio-item .portfolio-img .portfolio-img-inner {
     visibility: hidden;
-    transition: 0.5s;
+    transition: all 0.5s ease;
+    filter: brightness(0.8);
 }
 
 .portfolio-content .portfolio-item:hover .portfolio-img .portfolio-img-inner {
     visibility: visible;
-    transform: rotate(-6deg);
+    transform: rotate(-6deg) scale(1.1);
+    filter: brightness(1);
 }
-/*** Portfolio End ***/
 
+.portfolio-item h1 {
+    transition: all 0.5s ease;
+}
+
+.portfolio-content .portfolio-item:hover h1 {
+    color: var(--bs-primary);
+    transform: translateX(10px);
+}
+
+/*** Portfolio End ***/
 
 /*** Blog Start ***/
 .blog-content .blog-btn a {
     color: var(--bs-primary);
+    transition: all 0.3s ease;
 }
 .blog-content .blog-btn a:hover {
     color: var(--bs-dark);
+    transform: translateX(5px);
 }
 /*** Blog End ***/
-
 
 /*** Testimonial Start ***/
 .testimonial-carousel {
@@ -429,6 +519,11 @@
 
 .testimonial-carousel .testimonial-item {
     padding: 60px;
+    transition: all 0.5s ease;
+}
+
+.testimonial-carousel .testimonial-item:hover {
+    transform: scale(1.05);
 }
 
 .testimonial-carousel .owl-nav .owl-prev {
@@ -443,7 +538,8 @@
     justify-content: center;
     background: var(--bs-white);
     color: var(--bs-primary);
-    transition: 0.5s;
+    transition: all 0.5s ease;
+    border-radius: 50%;
 }
 
 .testimonial-carousel .owl-nav .owl-next {
@@ -458,13 +554,16 @@
     justify-content: center;
     background: var(--bs-white);
     color: var(--bs-primary);
-    transition: 0.5s;
+    transition: all 0.5s ease;
+    border-radius: 50%;
 }
 
 .testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial-carousel .owl-nav .owl-next:hover {
     background: var(--bs-primary);
     color: var(--bs-white);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 5px 20px rgba(13, 110, 253, 0.4);
 }
 
 .testimonial-carousel .owl-dots {
@@ -488,7 +587,8 @@
     height: 40px;
     margin-right: 15px;
     border: 3px solid var(--bs-white);
-    transition: 0.5s;
+    transition: all 0.5s ease;
+    border-radius: 50%;
 }
 
 .testimonial-carousel .owl-dots .owl-dot.active img {
@@ -498,15 +598,233 @@
 }
 /*** Testimonial End ***/
 
+/*** Contact Start ***/
+.contact-content .d-flex {
+    transition: all 0.5s ease;
+}
+
+.contact-content .d-flex:hover {
+    transform: translateX(10px);
+}
+
+.btn-xl-square {
+    transition: all 0.3s ease;
+}
+
+.contact-content .btn-xl-square:hover {
+    background: var(--bs-dark) !important;
+    transform: scale(1.1) rotate(10deg);
+}
+/*** Contact End ***/
+
 /*** footer Start ***/
 @media (max-width: 991px) {
     .container-fluid .footer-content {
         padding-left: 0;
     }
 }
+
+.footer {
+    animation: fadeInUp 0.6s ease 0.3s both;
+}
 /*** footer End ***/
 
+/*** Header animations ***/
+.header-content h1,
+.about-header h1,
+.skills-header h1,
+.service-header h1,
+.portfolio-header h1,
+.contact-header h1 {
+    animation: slideInDown 0.6s ease;
+}
 
+.header-img img {
+    animation: slideInRight 0.6s ease 0.2s both;
+}
 
+/*** Keyframe Animations ***/
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/*** Responsive Design Enhancements ***/
+@media (max-width: 1200px) {
+    .pt-6, .pe-6, .pb-6, .ps-6 {
+        padding: 40px !important;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pt-6, .pe-6, .pb-6, .ps-6 {
+        padding: 25px !important;
+    }
+    
+    .header-content h1,
+    .display-6 {
+        font-size: 1.8rem;
+    }
+    
+    .container-fluid .header-img,
+    .container-fluid .about-content,
+    .container-fluid .skills-content,
+    .container-fluid .service-content,
+    .container-fluid .portfolio-content,
+    .container-fluid .contact-content {
+        padding: 25px;
+    }
+    
+    .row.g-5 {
+        gap: 1.5rem !important;
+    }
+    
+    .btn-xl-square {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pt-6, .pe-6, .pb-6, .ps-6 {
+        padding: 15px !important;
+    }
+    
+    .display-6 {
+        font-size: 1.5rem;
+    }
+    
+    .sub-title {
+        font-size: 18px;
+    }
+    
+    .nav-section .navbar {
+        width: 50%;
+    }
+    
+    .skills-content .row {
+        gap: 1rem !important;
+    }
+    
+    .col-6 {
+        padding: 10px;
+    }
+    
+    .testimonial-carousel .owl-dots {
+        padding: 20px 10px;
+    }
+    
+    .footer {
+        padding: 20px;
+    }
+}
+
+/*** Smooth Scroll Behavior ***/
+html {
+    scroll-behavior: smooth;
+}
+
+/*** Image Lazy Loading ***/
+img {
+    transition: opacity 0.3s ease;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+/*** Hover Effects for Links ***/
+a {
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/*** Form Styling ***/
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    transition: all 0.3s ease;
+}
+
+input.error,
+textarea.error {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+/*** Scrollbar Styling ***/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bs-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bs-dark);
+}
