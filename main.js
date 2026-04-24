@@ -44,9 +44,9 @@
    // Back to top button
    $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
-        $('.back-to-top').fadeIn('slow');
+        $('.back-to-top').addClass('show');
     } else {
-        $('.back-to-top').fadeOut('slow');
+        $('.back-to-top').removeClass('show');
     }
     });
     $('.back-to-top').click(function () {
@@ -54,6 +54,76 @@
         return false;
     });
 
+    // Smooth scroll for navigation links
+    $('a[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        var target = $(this.getAttribute('href'));
+        if(target.length) {
+            $('html, body').stop().animate({
+                scrollTop: target.offset().top - 100
+            }, 1000);
+        }
+    });
+
+    // Active nav link on scroll
+    $(window).scroll(function() {
+        var scrollPos = $(document).scrollTop();
+        $('.navbar-nav .nav-link').each(function() {
+            var refElement = $($(this).attr('href'));
+            if(refElement.length) {
+                if (refElement.offset().top - 200 <= scrollPos && refElement.offset().top + refElement.height() - 200 > scrollPos) {
+                    $('.navbar-nav .nav-link').removeClass('active');
+                    $(this).addClass('active');
+                }
+            }
+        });
+    });
+
+    // Lazy loading for images
+    if('IntersectionObserver' in window) {
+        let imageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if(entry.isIntersecting) {
+                    let img = entry.target;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img').forEach(img => imageObserver.observe(img));
+    }
+
+    // Responsive menu toggle (if needed)
+    $(window).resize(function() {
+        if($(window).width() < 992) {
+            // Mobile specific adjustments
+            $('.nav-section').addClass('mobile-nav');
+        } else {
+            $('.nav-section').removeClass('mobile-nav');
+        }
+    });
+
+    // Form validation (if forms are added)
+    $('form').on('submit', function(e) {
+        let isValid = true;
+        $(this).find('input[required], textarea[required]').each(function() {
+            if($(this).val() === '') {
+                isValid = false;
+                $(this).addClass('error');
+            } else {
+                $(this).removeClass('error');
+            }
+        });
+        if(!isValid) {
+            e.preventDefault();
+        }
+    });
+
+    // Parallax effect for header (optional)
+    $(window).scroll(function() {
+        var scrollPos = $(window).scrollTop();
+        $('.header-img').css('transform', 'translateY(' + scrollPos * 0.5 + 'px)');
+    });
 
 })(jQuery);
-
