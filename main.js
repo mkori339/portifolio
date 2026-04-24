@@ -65,18 +65,36 @@
         }
     });
 
-    // Active nav link on scroll
+    // Active nav link on scroll - FIXED to only add active when appropriate
     $(window).scroll(function() {
         var scrollPos = $(document).scrollTop();
+        var found = false;
+        
         $('.navbar-nav .nav-link').each(function() {
             var refElement = $($(this).attr('href'));
             if(refElement.length) {
                 if (refElement.offset().top - 200 <= scrollPos && refElement.offset().top + refElement.height() - 200 > scrollPos) {
                     $('.navbar-nav .nav-link').removeClass('active');
                     $(this).addClass('active');
+                    found = true;
                 }
             }
         });
+        
+        // If no section is in view, remove all active classes
+        if(!found) {
+            $('.navbar-nav .nav-link').removeClass('active');
+        }
+    });
+
+    // Mobile menu toggle
+    var navOpen = false;
+    $(window).on('resize', function() {
+        if($(window).width() < 992) {
+            if(!navOpen) {
+                $('.nav-section .navbar').css('visibility', 'visible');
+            }
+        }
     });
 
     // Lazy loading for images
@@ -102,7 +120,7 @@
         } else {
             $('.nav-section').removeClass('mobile-nav');
         }
-    });
+    }).trigger('resize');
 
     // Form validation (if forms are added)
     $('form').on('submit', function(e) {
@@ -123,7 +141,9 @@
     // Parallax effect for header (optional)
     $(window).scroll(function() {
         var scrollPos = $(window).scrollTop();
-        $('.header-img').css('transform', 'translateY(' + scrollPos * 0.5 + 'px)');
+        if($(window).width() > 768) {
+            $('.header-img').css('transform', 'translateY(' + scrollPos * 0.5 + 'px)');
+        }
     });
 
 })(jQuery);
