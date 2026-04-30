@@ -1,609 +1,1188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Hafidhi Mkori | Creative Software Developer</title>
-    <meta content="Portfolio of Hafidhi Mkori, a software developer building polished web and mobile experiences from Tanzania." name="description">
-    <meta content="Hafidhi Mkori, portfolio, Flutter developer, Laravel developer, Django developer, React developer, Tanzania" name="keywords">
-    <meta content="#fff8ef" name="theme-color">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafidhi Mkori | Creative Software Developer</title>
+  <meta name="description" content="Portfolio of Hafidhi Mkori, a software developer building polished web and mobile experiences from Tanzania.">
+  <meta name="theme-color" content="#060b18">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      /* Core palette: deep navy + electric teal + amber gold */
+      --night:   #060b18;
+      --navy:    #0b1225;
+      --navy2:   #0f1a30;
+      --navy3:   #172040;
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+      --teal:    #00d4b4;
+      --teal2:   #00b89c;
+      --teal-lo: rgba(0,212,180,.12);
+      --teal-gl: rgba(0,212,180,.30);
+
+      --amber:   #f5a623;
+      --amber2:  #e8941a;
+      --amber-lo:rgba(245,166,35,.12);
+      --amber-gl:rgba(245,166,35,.28);
+
+      --rose:    #ff5c7c;
+      --violet:  #7c6bff;
+
+      --ink:     #e8f0ff;
+      --ink2:    rgba(232,240,255,.65);
+      --ink3:    rgba(232,240,255,.38);
+      --line:    rgba(232,240,255,.07);
+
+      /* Gradients */
+      --g-ta:  linear-gradient(135deg,var(--teal) 0%,var(--amber) 100%);
+      --g-nt:  linear-gradient(135deg,var(--navy2) 0%,var(--navy3) 100%);
+      --g-glow:radial-gradient(circle,var(--teal-gl),transparent 68%);
+
+      /* Shadows */
+      --s-card: 0 2px 0 rgba(255,255,255,.04) inset, 0 12px 48px rgba(0,0,0,.45);
+      --s-teal: 0 0 0 1px var(--teal-lo), 0 12px 40px rgba(0,0,0,.4);
+      --s-glow: 0 0 32px var(--teal-gl), 0 8px 24px rgba(0,0,0,.4);
+
+      --r-2xl: 28px;
+      --r-xl:  20px;
+      --r-lg:  14px;
+      --r-md:  10px;
+      --container: 1160px;
+    }
+
+    /* ── RESET & BASE ──────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{
+      font-family:"Instrument Sans",sans-serif;
+      background:var(--night);
+      color:var(--ink);
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+    /* animated gradient mesh background */
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%,  rgba(0,212,180,.10) 0%,transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 30%,  rgba(245,166,35,.07) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 50% at 50% 90%,  rgba(124,107,255,.06) 0%,transparent 60%),
+        var(--night);
+      pointer-events:none;z-index:0;
+    }
+    /* subtle dot grid */
+    body::after{
+      content:"";
+      position:fixed;inset:0;
+      background-image:radial-gradient(rgba(232,240,255,.08) 1px,transparent 1px);
+      background-size:28px 28px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,transparent 80%);
+      pointer-events:none;z-index:0;
+    }
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    p{color:var(--ink2)}
+    h1,h2,h3,h4,h5,h6{
+      font-family:"Bricolage Grotesque",sans-serif;
+      color:var(--ink);line-height:1.06;
+    }
+    button{font:inherit;cursor:pointer}
+    body.nav-open{overflow:hidden}
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .shell{width:min(var(--container),calc(100% - 44px));margin:0 auto;position:relative;z-index:1}
+    .section{padding:112px 0;position:relative}
+    .alt{background:rgba(255,255,255,.015);border-block:1px solid var(--line)}
+
+    /* ── GLASS PANEL ───────────────────────────────────────────── */
+    .panel{
+      background:rgba(15,26,48,.72);
+      border:1px solid var(--line);
+      border-radius:var(--r-2xl);
+      box-shadow:var(--s-card);
+      backdrop-filter:blur(24px);
+      position:relative;overflow:hidden;
+    }
+    .panel::before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,transparent 55%);
+      pointer-events:none;border-radius:inherit;
+    }
+
+    /* ── LABEL / EYEBROW ───────────────────────────────────────── */
+    .label{
+      display:inline-flex;align-items:center;gap:9px;
+      font-family:"JetBrains Mono",monospace;
+      color:var(--teal);font-size:.72rem;font-weight:500;
+      letter-spacing:.18em;text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    .label::before{content:"//";opacity:.5}
+
+    /* ── PAGE LOADER ───────────────────────────────────────────── */
+    .loader{
+      position:fixed;inset:0;
+      display:grid;place-items:center;
+      background:var(--night);
+      z-index:200;
+      transition:opacity .5s ease,visibility .5s ease;
+    }
+    .loader.out{opacity:0;visibility:hidden}
+    .loader-inner{display:grid;place-items:center;gap:18px}
+    .loader-ring{
+      width:72px;height:72px;
+      border-radius:50%;
+      border:2px solid var(--line);
+      border-top-color:var(--teal);
+      border-right-color:var(--amber);
+      animation:spin 1.2s linear infinite;
+    }
+    .loader-logo-wrap svg{
+      width:56px;height:56px;
+      position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%);
+    }
+    .loader-ring-wrap{position:relative;width:72px;height:72px}
+    .loader-text{
+      font-family:"JetBrains Mono",monospace;
+      font-size:.72rem;letter-spacing:.2em;
+      color:var(--ink3);text-transform:uppercase;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── SCROLL BAR ────────────────────────────────────────────── */
+    .scroll-bar{
+      position:fixed;top:0;left:0;right:0;height:2px;
+      background:var(--g-ta);transform:scaleX(0);transform-origin:left;
+      z-index:150;box-shadow:0 0 10px var(--teal-gl);
+    }
+
+    /* ── AMBIENT ORBS ──────────────────────────────────────────── */
+    .orb{
+      position:fixed;border-radius:50%;
+      filter:blur(90px);opacity:.28;
+      pointer-events:none;z-index:0;
+      animation:orb-float 18s ease-in-out infinite;
+    }
+    .orb-a{width:600px;height:600px;top:-15%;left:-15%;background:rgba(0,212,180,.35);animation-delay:0s}
+    .orb-b{width:500px;height:500px;top:35%;right:-15%;background:rgba(245,166,35,.28);animation-delay:-7s}
+    .orb-c{width:400px;height:400px;bottom:0;left:20%;background:rgba(124,107,255,.22);animation-delay:-13s}
+    @keyframes orb-float{
+      0%,100%{transform:translate(0,0) scale(1)}
+      33%{transform:translate(30px,-25px) scale(1.05)}
+      66%{transform:translate(-20px,18px) scale(.97)}
+    }
+
+    /* ── HEADER ────────────────────────────────────────────────── */
+    .hdr{
+      position:sticky;top:0;z-index:100;
+      padding:12px 0;
+      background:rgba(6,11,24,.85);
+      backdrop-filter:blur(24px) saturate(180%);
+      border-bottom:1px solid var(--line);
+      transition:border-color .3s;
+    }
+    .hdr.scrolled{border-color:rgba(0,212,180,.12)}
+    .hdr-inner{
+      display:flex;align-items:center;
+      justify-content:space-between;gap:20px;
+    }
+
+    /* ── LOGO ──────────────────────────────────────────────────── */
+    .logo{display:inline-flex;align-items:center;gap:11px}
+    .logo-mark svg{
+      width:44px;height:44px;
+      transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .logo:hover .logo-mark svg{transform:rotate(-8deg) scale(1.08)}
+    .logo-text strong{
+      display:block;
+      font-family:"Bricolage Grotesque",sans-serif;
+      font-weight:800;font-size:.95rem;
+      color:var(--ink);
+    }
+    .logo-text small{
+      display:block;
+      font-family:"JetBrains Mono",monospace;
+      font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--ink3);
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    .nav{display:flex;align-items:center;gap:2px}
+    .nav-a{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:40px;padding:0 15px;border-radius:999px;
+      font-size:.88rem;font-weight:500;color:var(--ink2);
+      transition:color .2s,background .2s;
+    }
+    .nav-a:hover,.nav-a.on{color:var(--ink);background:rgba(255,255,255,.06)}
+    .nav-a.on{color:var(--teal)}
+    .nav-cta{
+      background:var(--g-ta);color:#fff !important;font-weight:700;
+      padding:0 20px;min-height:40px;border-radius:999px;
+      box-shadow:var(--s-glow);transition:transform .2s,box-shadow .2s;
+    }
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 40px var(--teal-gl),0 12px 32px rgba(0,0,0,.5)}
+    .burger{
+      display:none;width:42px;height:42px;
+      border:1px solid var(--line);border-radius:var(--r-lg);
+      background:rgba(255,255,255,.04);color:var(--ink);
+      font-size:1.25rem;transition:background .2s,border-color .2s;
+    }
+    .burger:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero{padding-top:88px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
+      gap:52px;align-items:center;
+    }
+    /* blinking status dot */
+    .status-pill{
+      display:inline-flex;align-items:center;gap:9px;
+      padding:7px 16px;border-radius:999px;
+      background:rgba(0,212,180,.08);border:1px solid rgba(0,212,180,.2);
+      font-family:"JetBrains Mono",monospace;
+      font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--teal);margin-bottom:26px;
+    }
+    .status-dot{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--teal);
+      box-shadow:0 0 8px var(--teal);
+      animation:pulse-dot 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+
+    .hero h1{
+      font-size:clamp(2.8rem,5.8vw,5.4rem);
+      font-weight:800;letter-spacing:-.04em;
+      max-width:13ch;margin-bottom:22px;
+    }
+    .grad{
+      background:var(--g-ta);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .hero-sub{font-size:1.08rem;max-width:560px;line-height:1.75}
+    .hero-btns{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      min-height:50px;padding:0 26px;border-radius:999px;
+      font-weight:600;font-size:.92rem;
+      transition:transform .2s,box-shadow .2s,background .2s;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-p{
+      background:var(--g-ta);color:#fff;
+      box-shadow:var(--s-glow);
+    }
+    .btn-p:hover{color:#fff;box-shadow:0 0 44px var(--teal-gl),0 12px 36px rgba(0,0,0,.5)}
+    .btn-s{
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);color:var(--ink);
+    }
+    .btn-s:hover{border-color:rgba(0,212,180,.3);background:rgba(0,212,180,.06)}
+
+    .hero-chips{
+      display:grid;grid-template-columns:repeat(2,1fr);
+      gap:13px;margin-top:34px;
+    }
+    .chip{
+      padding:16px 18px;border-radius:var(--r-xl);
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      transition:border-color .2s,background .2s;
+    }
+    .chip:hover{border-color:rgba(0,212,180,.2);background:rgba(0,212,180,.05)}
+    .chip-lbl{
+      display:block;margin-bottom:5px;
+      font-family:"JetBrains Mono",monospace;
+      font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);
+    }
+    .chip strong{font-size:.9rem;color:var(--ink);font-weight:600}
+
+    /* ── HERO VISUAL ───────────────────────────────────────────── */
+    .hero-vis{position:relative}
+    .portrait-stage{
+      position:relative;min-height:580px;
+      border-radius:32px;padding:22px;
+      background:linear-gradient(145deg,rgba(15,26,48,.98) 0%,rgba(23,32,64,.95) 100%);
+      border:1px solid var(--line);
+      box-shadow:0 0 80px rgba(0,212,180,.07),var(--s-card);
+      overflow:hidden;
+    }
+    /* corner grid decoration */
+    .portrait-stage::after{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(0,212,180,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,212,180,.04) 1px,transparent 1px);
+      background-size:32px 32px;pointer-events:none;
+    }
+    /* glow spot */
+    .portrait-stage::before{
+      content:"";position:absolute;
+      top:-40%;right:-20%;
+      width:380px;height:380px;border-radius:50%;
+      background:radial-gradient(circle,rgba(245,166,35,.1),transparent 65%);
+      pointer-events:none;
+    }
+    .portrait-frame{
+      position:relative;z-index:1;
+      width:min(100%,360px);margin:18px auto 0;
+      border-radius:22px;overflow:hidden;
+      border:2.5px solid rgba(0,212,180,.25);
+      box-shadow:0 0 48px rgba(0,212,180,.18),0 24px 64px rgba(0,0,0,.6);
+      transform:rotate(-2.5deg);
+    }
+    .portrait-frame img{width:100%;aspect-ratio:.92;object-fit:cover}
+
+    .f-card{
+      position:absolute;z-index:2;
+      max-width:195px;padding:13px 15px;
+      border-radius:var(--r-xl);
+      background:rgba(11,18,37,.9);
+      border:1px solid rgba(0,212,180,.15);
+      box-shadow:0 0 20px rgba(0,212,180,.08),0 16px 40px rgba(0,0,0,.55);
+      backdrop-filter:blur(18px);
+      animation:float 8s ease-in-out infinite;
+    }
+    .f-card .lbl{
+      font-family:"JetBrains Mono",monospace;
+      font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;
+      color:var(--teal);margin-bottom:4px;display:block;
+    }
+    .f-card strong{font-size:.88rem;color:var(--ink);font-weight:600;line-height:1.4}
+    .f1{top:7%;left:1%;animation-delay:0s}
+    .f2{top:36%;right:1%;animation-delay:-2.8s}
+    .f3{bottom:8%;left:7%;animation-delay:-5.2s}
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-11px)}
+    }
+
+    /* ── STATS ─────────────────────────────────────────────────── */
+    .stats{padding-bottom:52px}
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .stat-card{
+      padding:26px 28px;border-radius:var(--r-2xl);
+      background:rgba(15,26,48,.75);
+      border:1px solid var(--line);
+      box-shadow:var(--s-card);
+      transition:border-color .25s,transform .25s;
+    }
+    .stat-card:hover{border-color:rgba(0,212,180,.2);transform:translateY(-4px)}
+    .stat-n{display:flex;align-items:baseline;gap:3px;margin-bottom:10px}
+    .stat-v,.stat-s{
+      font-family:"Bricolage Grotesque",sans-serif;
+      font-size:clamp(2rem,4vw,3.4rem);font-weight:800;
+      letter-spacing:-.05em;
+      background:var(--g-ta);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    /* ── SECTION INTRO ─────────────────────────────────────────── */
+    .s-intro{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(240px,380px);
+      gap:28px;align-items:end;margin-bottom:44px;
+    }
+    .s-intro h2{
+      font-size:clamp(1.9rem,3.8vw,3.2rem);
+      font-weight:800;letter-spacing:-.04em;max-width:16ch;
+    }
+
+    /* ── ABOUT ─────────────────────────────────────────────────── */
+    .about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .pad{padding:30px}
+    .story-list{display:grid;gap:18px;margin-top:4px}
+    .s-item{
+      display:grid;grid-template-columns:100px 1fr;
+      gap:14px;padding:15px 0;
+      border-top:1px solid var(--line);
+    }
+    .s-item:first-child{border-top:0;padding-top:0}
+    .s-yr{
+      font-family:"JetBrains Mono",monospace;
+      font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--teal);padding-top:3px;
+    }
+    .s-item strong{display:block;margin-bottom:5px;font-size:.94rem;color:var(--ink)}
+    .s-item p{font-size:.86rem}
+
+    .mini-g{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
+    .mini-g div{
+      padding:15px 16px;border-radius:var(--r-lg);
+      background:rgba(255,255,255,.03);border:1px solid var(--line);
+    }
+    .mini-g span{
+      display:block;margin-bottom:5px;
+      font-family:"JetBrains Mono",monospace;
+      font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);
+    }
+    .mini-g strong{font-size:.88rem;color:var(--ink)}
+
+    .focus-g{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .focus-c{
+      padding:17px;border-radius:var(--r-lg);
+      background:rgba(255,255,255,.025);border:1px solid var(--line);
+      transition:border-color .2s,background .2s,transform .2s;
+    }
+    .focus-c:hover{border-color:rgba(0,212,180,.2);background:rgba(0,212,180,.04);transform:translateY(-2px)}
+    .focus-c i{
+      font-size:1.1rem;margin-bottom:9px;display:block;
+      background:var(--g-ta);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .focus-c h4{font-size:.88rem;margin-bottom:5px;color:var(--ink)}
+    .focus-c p{font-size:.8rem}
+
+    /* ── SKILLS ────────────────────────────────────────────────── */
+    .skills-g{display:grid;grid-template-columns:1fr minmax(280px,420px);gap:20px}
+    .skill-list{display:grid;gap:12px}
+    .sk{
+      padding:18px 22px;border-radius:var(--r-xl);
+      background:rgba(15,26,48,.75);border:1px solid var(--line);
+      transition:border-color .2s,transform .2s;
+    }
+    .sk:hover{border-color:rgba(0,212,180,.2);transform:translateX(5px)}
+    .sk-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .sk-title{display:flex;align-items:center;gap:12px}
+    .sk-ico{
+      display:grid;place-items:center;
+      width:38px;height:38px;border-radius:var(--r-md);font-size:1rem;
+    }
+    .ic-dj{background:rgba(0,212,180,.12);color:var(--teal)}
+    .ic-fl{background:rgba(0,212,180,.12);color:var(--teal)}
+    .ic-nd{background:rgba(245,166,35,.12);color:var(--amber)}
+    .ic-re{background:rgba(124,107,255,.15);color:var(--violet)}
+    .ic-la{background:rgba(255,92,124,.12);color:var(--rose)}
+    .ic-ui{background:rgba(245,166,35,.12);color:var(--amber)}
+    .sk h3{font-size:.92rem;margin-bottom:2px;color:var(--ink)}
+    .sk p{font-size:.8rem}
+    .sk-pct{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--ink2)}
+    .sk-bar{height:4px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+    .sk-fill{
+      display:block;height:100%;width:0;border-radius:999px;
+      background:var(--g-ta);
+      box-shadow:0 0 8px var(--teal-gl);
+      transition:width 1.1s cubic-bezier(.22,1,.36,1);
+    }
+
+    .toolbox h3{font-size:1.25rem;letter-spacing:-.02em;margin-bottom:20px}
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
+    .tag-cloud span{
+      padding:5px 13px;border-radius:999px;
+      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      font-size:.8rem;color:var(--ink2);
+      transition:border-color .2s,color .2s,background .2s;
+    }
+    .tag-cloud span:hover{border-color:rgba(0,212,180,.3);color:var(--teal);background:rgba(0,212,180,.07)}
+    .flow{display:grid;gap:13px}
+    .flow-i{
+      padding:13px 15px;border-radius:var(--r-lg);
+      background:rgba(255,255,255,.02);
+      border-left:2px solid var(--teal);
+    }
+    .flow-i strong{display:block;margin-bottom:4px;font-size:.88rem;color:var(--ink)}
+    .flow-i p{font-size:.82rem}
+
+    /* ── SERVICES ──────────────────────────────────────────────── */
+    .srv-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .srv{padding:30px;transition:transform .25s,box-shadow .25s,border-color .25s}
+    .srv:hover{transform:translateY(-6px);border-color:rgba(0,212,180,.2);box-shadow:0 0 40px rgba(0,212,180,.06),var(--s-card)}
+    .srv-num{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:46px;height:46px;border-radius:var(--r-lg);
+      background:var(--g-ta);color:#fff;
+      font-family:"JetBrains Mono",monospace;font-size:.82rem;font-weight:700;
+      margin-bottom:18px;box-shadow:var(--s-glow);
+    }
+    .srv h3{font-size:1.18rem;margin-bottom:11px;letter-spacing:-.02em}
+    .srv p{font-size:.88rem;margin-bottom:18px}
+    .srv-pts{list-style:none;display:grid;gap:8px}
+    .srv-pts li{
+      display:flex;align-items:center;gap:9px;
+      font-size:.85rem;color:var(--ink2);
+    }
+    .srv-pts li::before{
+      content:"";flex-shrink:0;
+      width:5px;height:5px;border-radius:50%;
+      background:var(--teal);box-shadow:0 0 6px var(--teal);
+    }
+
+    /* ── PROJECTS ──────────────────────────────────────────────── */
+    .proj-g{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .proj-card{display:block;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+    .proj-card:hover{transform:translateY(-6px);border-color:rgba(0,212,180,.22);box-shadow:0 0 50px rgba(0,212,180,.07),var(--s-card)}
+    .proj-img{
+      padding:18px 18px 0;
+      background:linear-gradient(145deg,rgba(0,212,180,.04),rgba(245,166,35,.03));
+    }
+    .proj-img img{
+      width:100%;aspect-ratio:16/10;object-fit:cover;
+      border-radius:var(--r-lg) var(--r-lg) 0 0;
+      border:1px solid var(--line);
+    }
+    .proj-body{padding:22px}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
+    .proj-tags span{
+      padding:3px 11px;border-radius:999px;
+      background:rgba(0,212,180,.09);border:1px solid rgba(0,212,180,.15);
+      font-family:"JetBrains Mono",monospace;font-size:.62rem;font-weight:500;
+      color:var(--teal);letter-spacing:.09em;text-transform:uppercase;
+    }
+    .proj-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+    .proj-title h3{font-size:1.22rem;letter-spacing:-.02em}
+    .proj-icon{
+      display:grid;place-items:center;
+      width:34px;height:34px;border-radius:var(--r-md);
+      background:rgba(255,255,255,.05);border:1px solid var(--line);
+      color:var(--ink2);font-size:.78rem;
+      transition:background .2s,color .2s,border-color .2s;
+    }
+    .proj-card:hover .proj-icon{background:var(--g-ta);color:#fff;border-color:transparent}
+    .proj-body p{font-size:.88rem;margin-bottom:14px}
+    .stack-tags{display:flex;flex-wrap:wrap;gap:5px}
+    .stack-tags span{
+      padding:3px 10px;border-radius:999px;
+      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      font-size:.76rem;color:var(--ink2);
+    }
+
+    /* ── CONTACT ───────────────────────────────────────────────── */
+    .cta-g{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:18px}
+    .cta-main{
+      padding:38px 36px;
+      background:linear-gradient(145deg,rgba(15,26,48,.98),rgba(23,32,64,.95));
+      border-color:rgba(0,212,180,.12);position:relative;overflow:hidden;
+    }
+    .cta-main::after{
+      content:"";position:absolute;
+      top:-40%;right:-15%;width:320px;height:320px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,212,180,.07),transparent 65%);
+      pointer-events:none;
+    }
+    .cta-main h2{font-size:clamp(1.6rem,2.8vw,2.6rem);font-weight:800;letter-spacing:-.04em;margin-bottom:14px}
+    .cta-main p{font-size:.98rem;margin-bottom:0}
+    .cta-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+    .cta-stack{display:grid;gap:14px}
+    .c-card,.soc-card{
+      padding:22px;display:flex;align-items:center;gap:15px;
+    }
+    .c-ico{
+      flex-shrink:0;display:grid;place-items:center;
+      width:48px;height:48px;border-radius:var(--r-lg);
+      background:rgba(0,212,180,.1);border:1px solid rgba(0,212,180,.18);
+      color:var(--teal);font-size:1.05rem;
+    }
+    .c-card h3{margin-bottom:4px;font-size:.95rem;color:var(--ink)}
+    .c-card a{font-size:.86rem;color:var(--ink2)}
+    .c-card a:hover{color:var(--teal)}
+    .soc-card{justify-content:space-between}
+    .soc-card h3{font-size:.95rem}
+    .soc-links{display:flex;gap:9px}
+    .soc-links a{
+      display:grid;place-items:center;
+      width:40px;height:40px;border-radius:var(--r-md);
+      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      transition:transform .2s,background .2s,border-color .2s,color .2s;
+    }
+    .soc-links a:hover{background:var(--g-ta);color:#fff;border-color:transparent;transform:translateY(-3px)}
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    .ftr{padding:22px 0 36px;border-top:1px solid var(--line);position:relative;z-index:1}
+    .ftr-inner{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .ftr-brand{display:flex;align-items:center;gap:10px}
+    .ftr-brand svg{width:30px;height:30px}
+    .ftr p{font-size:.84rem}
+    .ftr a{color:var(--teal);font-weight:600}
+    .ftr a:hover{text-decoration:underline}
+
+    /* ── BACK TO TOP ───────────────────────────────────────────── */
+    .btt{
+      position:fixed;right:20px;bottom:20px;z-index:80;
+      display:grid;place-items:center;
+      width:46px;height:46px;border-radius:var(--r-lg);
+      background:var(--g-ta);color:#fff;
+      box-shadow:var(--s-glow);
+      opacity:0;visibility:hidden;
+      transform:translateY(14px);
+      transition:opacity .25s,visibility .25s,transform .25s;
+    }
+    .btt.on{opacity:1;visibility:visible;transform:translateY(0)}
+    .btt:hover{color:#fff;transform:translateY(-3px)}
+
+    /* ── REVEAL ────────────────────────────────────────────────── */
+    .rv{
+      opacity:0;transform:translateY(30px) scale(.98);
+      transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1);
+      transition-delay:var(--d,0s);
+    }
+    .rv.show{opacity:1;transform:none}
+
+    /* ── MOBILE NAV DROPDOWN ───────────────────────────────────── */
+    @media(max-width:960px){
+      .burger{display:grid;place-items:center}
+      .nav{
+        position:absolute;top:calc(100% + 10px);left:0;right:0;
+        display:grid;gap:5px;padding:13px;
+        background:rgba(11,18,37,.98);
+        border:1px solid var(--line);border-radius:22px;
+        box-shadow:var(--s-card);backdrop-filter:blur(28px);
+        opacity:0;visibility:hidden;transform:translateY(-8px);
+        transition:opacity .22s,visibility .22s,transform .22s;
+      }
+      .nav.open{opacity:1;visibility:visible;transform:translateY(0)}
+      .nav-a,.nav-cta{width:100%;justify-content:flex-start;padding:0 16px}
+      .hero{padding-top:52px}
+      .hero-grid,.about-grid,.skills-g,.cta-g,.s-intro{grid-template-columns:1fr}
+      .proj-g{grid-template-columns:1fr}
+      .portrait-stage{min-height:500px}
+      .srv-g{grid-template-columns:1fr}
+    }
+    @media(max-width:860px){
+      .stats-row,.mini-g,.focus-g,.skill-list{grid-template-columns:1fr}
+      .proj-g{grid-template-columns:1fr}
+    }
+    @media(max-width:720px){
+      .section{padding:84px 0}
+      .hero h1{font-size:clamp(2.4rem,11vw,3.6rem)}
+      .hero-chips{grid-template-columns:1fr}
+      .portrait-stage{
+        display:grid;gap:13px;min-height:auto;
+        padding:20px 18px 24px;justify-items:center;
+      }
+      .portrait-frame{width:min(100%,290px);margin-top:8px;transform:rotate(-2deg)}
+      .f-card{position:static;width:100%;max-width:100%;animation:none}
+      .f1,.f2,.f3{top:auto;left:auto;right:auto;bottom:auto}
+      .ftr-inner,.soc-card{flex-direction:column;align-items:flex-start}
+      .stats-row{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      .shell{width:calc(100% - 24px)}
+      .logo-text small{display:none}
+      .btn{width:100%}
+      .hero-btns{display:grid}
+      .btt{right:13px;bottom:13px}
+      .pad,.srv,.cta-main,.c-card,.soc-card{padding:22px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0ms!important}
+      .rv{opacity:1;transform:none}
+      .sk-fill{width:var(--progress)}
+    }
+  </style>
 </head>
 <body>
-    <div class="page-loader" id="pageLoader" aria-hidden="true">
-        <div class="loader-mark">
-            <span>HM</span>
-            <small>Loading portfolio</small>
+
+  <!-- ── PAGE LOADER ─────────────────────────── -->
+  <div class="loader" id="pageLoader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-ring-wrap">
+        <div class="loader-ring"></div>
+        <div class="loader-logo-wrap">
+          <!-- Inline SVG Logo -->
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ll1" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00d4b4"/>
+                <stop offset="1" stop-color="#f5a623"/>
+              </linearGradient>
+            </defs>
+            <rect x="12" y="10" width="6" height="36" rx="2.5" fill="url(#ll1)"/>
+            <rect x="12" y="24" width="20" height="6" rx="2.5" fill="url(#ll1)"/>
+            <rect x="26" y="10" width="6" height="36" rx="2.5" fill="url(#ll1)"/>
+            <rect x="36" y="10" width="6" height="36" rx="2.5" fill="url(#ll1)" opacity=".9"/>
+            <path d="M36 10 L42 22 L48 10" stroke="url(#ll1)" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            <rect x="42" y="10" width="6" height="36" rx="2.5" fill="url(#ll1)" opacity=".9"/>
+          </svg>
         </div>
+      </div>
+      <span class="loader-text">Loading portfolio…</span>
     </div>
+  </div>
 
-    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-    <div class="page-orb orb-one" aria-hidden="true"></div>
-    <div class="page-orb orb-two" aria-hidden="true"></div>
-    <div class="page-orb orb-three" aria-hidden="true"></div>
+  <div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+  <div class="orb orb-c" aria-hidden="true"></div>
 
-    <header class="site-header" id="siteHeader">
-        <div class="site-shell nav-wrap">
-            <a class="brand" href="#home" aria-label="Go to home section">
-                <span class="brand-mark">HM</span>
-                <span class="brand-copy">
-                    <strong>Hafidhi Mkori</strong>
-                    <small>Web and Mobile Developer</small>
-                </span>
-            </a>
-
-            <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="siteNav" aria-expanded="false">
-                <i class="bi bi-list"></i>
-            </button>
-
-            <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
-                <a class="nav-link is-active" href="#home">Home</a>
-                <a class="nav-link" href="#about">About</a>
-                <a class="nav-link" href="#skills">Skills</a>
-                <a class="nav-link" href="#services">Services</a>
-                <a class="nav-link" href="#projects">Projects</a>
-                <a class="nav-link nav-link-cta" href="#contact">Let's Talk</a>
-            </nav>
+  <!-- ── HEADER ──────────────────────────────── -->
+  <header class="hdr" id="siteHeader">
+    <div class="shell hdr-inner" style="position:relative">
+      <a class="logo" href="#home" aria-label="Home">
+        <div class="logo-mark">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="nl1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00d4b4"/>
+                <stop offset="1" stop-color="#f5a623"/>
+              </linearGradient>
+            </defs>
+            <rect width="44" height="44" rx="12" fill="url(#nl1)" opacity=".1"/>
+            <rect x=".6" y=".6" width="42.8" height="42.8" rx="11.4" stroke="url(#nl1)" stroke-width="1.2"/>
+            <rect x="9" y="9" width="5" height="26" rx="2" fill="url(#nl1)"/>
+            <rect x="9" y="19.5" width="16" height="5" rx="2" fill="url(#nl1)"/>
+            <rect x="20" y="9" width="5" height="26" rx="2" fill="url(#nl1)"/>
+            <rect x="28" y="9" width="4.5" height="26" rx="2" fill="url(#nl1)" opacity=".9"/>
+            <path d="M28 9 L32.5 17 L37 9" stroke="url(#nl1)" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            <rect x="32.5" y="9" width="4.5" height="26" rx="2" fill="url(#nl1)" opacity=".9"/>
+          </svg>
         </div>
-    </header>
-
-    <main>
-        <section class="hero section" id="home">
-            <div class="site-shell hero-grid">
-                <div class="hero-copy reveal">
-                    <p class="eyebrow">Software Developer • UI-Focused • Based in Tanzania</p>
-                    <h1>Designing polished digital products for web and mobile.</h1>
-                    <p class="hero-text">
-                        I'm Hafidhi Abdala Mkori, a software engineering student and builder focused on interfaces that feel clean,
-                        backend systems that stay reliable, and mobile experiences that are easy to use.
-                    </p>
-
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#projects">See My Work</a>
-                        <a class="button button-secondary" href="mailto:mkorihafidhi@gmail.com">Start a Project</a>
-                    </div>
-
-                    <div class="hero-highlights">
-                        <article class="highlight-card">
-                            <span class="highlight-label">Current focus</span>
-                            <strong>Flutter, Laravel, Django, React</strong>
-                        </article>
-                        <article class="highlight-card">
-                            <span class="highlight-label">Availability</span>
-                            <strong>Freelance work, internships, collaboration</strong>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="hero-visual reveal" style="--delay: .12s;">
-                    <div class="portrait-stage">
-                        <div class="portrait-card">
-                            <img src="about.jpg" alt="Portrait of Hafidhi Mkori" loading="eager">
-                        </div>
-
-                        <div class="floating-card floating-card-one">
-                            <span>UI systems</span>
-                            <strong>Readable layouts with motion</strong>
-                        </div>
-                        <div class="floating-card floating-card-two">
-                            <span>Backend delivery</span>
-                            <strong>APIs, auth, dashboards</strong>
-                        </div>
-                        <div class="floating-card floating-card-three">
-                            <span>Mobile apps</span>
-                            <strong>Flutter-first product builds</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-band">
-            <div class="site-shell stats-grid">
-                <article class="stat-card reveal">
-                    <div class="stat-number">
-                        <span class="stat-value" data-count="2">0</span>
-                        <span class="stat-suffix">+</span>
-                    </div>
-                    <p>Years building practical web and mobile products.</p>
-                </article>
-
-                <article class="stat-card reveal" style="--delay: .08s;">
-                    <div class="stat-number">
-                        <span class="stat-value" data-count="6">0</span>
-                        <span class="stat-suffix">+</span>
-                    </div>
-                    <p>Core technologies used across frontend and backend work.</p>
-                </article>
-
-                <article class="stat-card reveal" style="--delay: .16s;">
-                    <div class="stat-number">
-                        <span class="stat-value" data-count="4">0</span>
-                        <span class="stat-suffix">+</span>
-                    </div>
-                    <p>Featured projects already shipped and shared online.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section" id="about">
-            <div class="site-shell">
-                <div class="section-intro reveal">
-                    <div>
-                        <p class="eyebrow">About</p>
-                        <h2>I mix interface design thinking with practical engineering.</h2>
-                    </div>
-                    <p>
-                        I study BSc Software Engineering at the University of Dodoma and spend most of my build time working on
-                        useful interfaces, backend logic, and product flows that make sense for real users.
-                    </p>
-                </div>
-
-                <div class="about-grid">
-                    <article class="panel story-card reveal">
-                        <p class="panel-kicker">Journey</p>
-                        <h3>Learning fast, shipping often, and improving with every project.</h3>
-
-                        <div class="story-list">
-                            <div class="story-item">
-                                <span class="story-year">2022 - 2026</span>
-                                <div>
-                                    <strong>University of Dodoma</strong>
-                                    <p>BSc Software Engineering with hands-on product work in web and mobile development.</p>
-                                </div>
-                            </div>
-
-                            <div class="story-item">
-                                <span class="story-year">Since 2023</span>
-                                <div>
-                                    <strong>Full-stack product building</strong>
-                                    <p>Designing interfaces, building APIs, and turning ideas into working applications.</p>
-                                </div>
-                            </div>
-
-                            <div class="story-item">
-                                <span class="story-year">Now</span>
-                                <div>
-                                    <strong>Open to collaboration</strong>
-                                    <p>Available for freelance work, student-friendly product teams, and real-world software challenges.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="panel profile-card reveal" style="--delay: .1s;">
-                        <p class="panel-kicker">Quick profile</p>
-                        <h3>Human-centered, implementation-minded, and comfortable across the stack.</h3>
-
-                        <div class="mini-facts">
-                            <div>
-                                <span>Location</span>
-                                <strong>Dodoma, Tanzania</strong>
-                            </div>
-                            <div>
-                                <span>Email</span>
-                                <strong>mkorihafidhi@gmail.com</strong>
-                            </div>
-                            <div>
-                                <span>Phone</span>
-                                <strong>+255 785 226 584</strong>
-                            </div>
-                            <div>
-                                <span>Status</span>
-                                <strong>Available for new work</strong>
-                            </div>
-                        </div>
-
-                        <div class="focus-grid">
-                            <article class="focus-card">
-                                <i class="fas fa-paint-brush"></i>
-                                <h4>Interface Craft</h4>
-                                <p>Clear hierarchy, better spacing, and animation that supports the user flow.</p>
-                            </article>
-
-                            <article class="focus-card">
-                                <i class="fas fa-server"></i>
-                                <h4>Backend Logic</h4>
-                                <p>Reliable business rules, authentication flows, admin tools, and APIs.</p>
-                            </article>
-
-                            <article class="focus-card">
-                                <i class="fas fa-mobile-alt"></i>
-                                <h4>Mobile Thinking</h4>
-                                <p>Responsive product decisions and Flutter app delivery with real usability in mind.</p>
-                            </article>
-
-                            <article class="focus-card">
-                                <i class="fas fa-rocket"></i>
-                                <h4>Product Mindset</h4>
-                                <p>Fast iteration, practical decisions, and a bias toward launching real work.</p>
-                            </article>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="section alt-section" id="skills">
-            <div class="site-shell">
-                <div class="section-intro reveal">
-                    <div>
-                        <p class="eyebrow">Skills</p>
-                        <h2>Tools and technologies I rely on to ship confidently.</h2>
-                    </div>
-                    <p>
-                        My strongest work sits where product design, frontend polish, and backend structure meet.
-                        These are the stacks I use most often.
-                    </p>
-                </div>
-
-                <div class="skills-layout">
-                    <div class="skill-grid">
-                        <article class="skill-card reveal">
-                            <div class="skill-head">
-                                <div class="skill-title">
-                                    <span class="skill-icon skill-django"><i class="fab fa-python"></i></span>
-                                    <div>
-                                        <h3>Django</h3>
-                                        <p>Business logic, APIs, admin tools</p>
-                                    </div>
-                                </div>
-                                <strong>63%</strong>
-                            </div>
-                            <div class="skill-track">
-                                <span class="skill-fill" style="--progress: 63%;"></span>
-                            </div>
-                        </article>
-
-                        <article class="skill-card reveal" style="--delay: .06s;">
-                            <div class="skill-head">
-                                <div class="skill-title">
-                                    <span class="skill-icon skill-flutter"><i class="fas fa-mobile-alt"></i></span>
-                                    <div>
-                                        <h3>Flutter</h3>
-                                        <p>Mobile apps with smooth UI flows</p>
-                                    </div>
-                                </div>
-                                <strong>87%</strong>
-                            </div>
-                            <div class="skill-track">
-                                <span class="skill-fill" style="--progress: 87%;"></span>
-                            </div>
-                        </article>
-
-                        <article class="skill-card reveal" style="--delay: .12s;">
-                            <div class="skill-head">
-                                <div class="skill-title">
-                                    <span class="skill-icon skill-node"><i class="fab fa-node-js"></i></span>
-                                    <div>
-                                        <h3>Node.js</h3>
-                                        <p>Utilities, APIs, and runtime flexibility</p>
-                                    </div>
-                                </div>
-                                <strong>57%</strong>
-                            </div>
-                            <div class="skill-track">
-                                <span class="skill-fill" style="--progress: 57%;"></span>
-                            </div>
-                        </article>
-
-                        <article class="skill-card reveal" style="--delay: .18s;">
-                            <div class="skill-head">
-                                <div class="skill-title">
-                                    <span class="skill-icon skill-react"><i class="fab fa-react"></i></span>
-                                    <div>
-                                        <h3>React</h3>
-                                        <p>Interactive frontend components</p>
-                                    </div>
-                                </div>
-                                <strong>70%</strong>
-                            </div>
-                            <div class="skill-track">
-                                <span class="skill-fill" style="--progress: 70%;"></span>
-                            </div>
-                        </article>
-
-                        <article class="skill-card reveal" style="--delay: .24s;">
-                            <div class="skill-head">
-                                <div class="skill-title">
-                                    <span class="skill-icon skill-laravel"><i class="fab fa-laravel"></i></span>
-                                    <div>
-                                        <h3>Laravel</h3>
-                                        <p>Web products and admin panels</p>
-                                    </div>
-                                </div>
-                                <strong>75%</strong>
-                            </div>
-                            <div class="skill-track">
-                                <span class="skill-fill" style="--progress: 75%;"></span>
-                            </div>
-                        </article>
-
-                        <article class="skill-card reveal" style="--delay: .3s;">
-                            <div class="skill-head">
-                                <div class="skill-title">
-                                    <span class="skill-icon skill-ui"><i class="fas fa-paint-brush"></i></span>
-                                    <div>
-                                        <h3>UI and UX</h3>
-                                        <p>Layout, clarity, interaction patterns</p>
-                                    </div>
-                                </div>
-                                <strong>78%</strong>
-                            </div>
-                            <div class="skill-track">
-                                <span class="skill-fill" style="--progress: 78%;"></span>
-                            </div>
-                        </article>
-                    </div>
-
-                    <aside class="panel stack-card reveal" style="--delay: .12s;">
-                        <p class="panel-kicker">Toolbox</p>
-                        <h3>Stack I use to move from concept to working product.</h3>
-
-                        <div class="stack-cloud">
-                            <span>Flutter</span>
-                            <span>Django</span>
-                            <span>Laravel</span>
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>PHP</span>
-                            <span>MySQL</span>
-                            <span>REST APIs</span>
-                            <span>Bootstrap</span>
-                            <span>Responsive UI</span>
-                        </div>
-
-                        <div class="workflow-list">
-                            <div class="workflow-item">
-                                <strong>01. Product structure</strong>
-                                <p>I start from layout, flow, and real content before decoration.</p>
-                            </div>
-                            <div class="workflow-item">
-                                <strong>02. Clean implementation</strong>
-                                <p>I connect frontend decisions to practical backend logic early.</p>
-                            </div>
-                            <div class="workflow-item">
-                                <strong>03. Finishing polish</strong>
-                                <p>I refine motion, spacing, responsiveness, and clarity before launch.</p>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="services">
-            <div class="site-shell">
-                <div class="section-intro reveal">
-                    <div>
-                        <p class="eyebrow">Services</p>
-                        <h2>What I can build for you.</h2>
-                    </div>
-                    <p>
-                        I work best on product-focused builds where the interface quality matters just as much as the code behind it.
-                    </p>
-                </div>
-
-                <div class="services-grid">
-                    <article class="panel service-card reveal">
-                        <span class="service-badge">01</span>
-                        <h3>Web Development</h3>
-                        <p>I create websites and dashboards with clean frontends and structured backend logic.</p>
-                        <ul class="service-points">
-                            <li>Django, Laravel, React builds</li>
-                            <li>Admin tools and business workflows</li>
-                            <li>Responsive interfaces with stronger UX</li>
-                        </ul>
-                    </article>
-
-                    <article class="panel service-card reveal" style="--delay: .08s;">
-                        <span class="service-badge">02</span>
-                        <h3>Mobile Applications</h3>
-                        <p>I build mobile products that feel fast, usable, and visually balanced across screen sizes.</p>
-                        <ul class="service-points">
-                            <li>Flutter app development</li>
-                            <li>Modern mobile UI design</li>
-                            <li>User-friendly flows and screens</li>
-                        </ul>
-                    </article>
-
-                    <article class="panel service-card reveal" style="--delay: .16s;">
-                        <span class="service-badge">03</span>
-                        <h3>UI Refresh and Product Polish</h3>
-                        <p>I improve existing interfaces with clearer hierarchy, better motion, and more attractive layouts.</p>
-                        <ul class="service-points">
-                            <li>Portfolio and landing page redesigns</li>
-                            <li>Animation and interaction improvements</li>
-                            <li>Better mobile and desktop experience</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="section alt-section" id="projects">
-            <div class="site-shell">
-                <div class="section-intro reveal">
-                    <div>
-                        <p class="eyebrow">Projects</p>
-                        <h2>Selected work with real product intent.</h2>
-                    </div>
-                    <p>
-                        These projects show the kind of web and mobile experiences I like building: clear purpose, usable interfaces,
-                        and practical implementation.
-                    </p>
-                </div>
-
-                <div class="projects-grid">
-                    <a class="panel project-card reveal" href="https://civehub.store" target="_blank" rel="noopener noreferrer" aria-label="Open Civehub project">
-                        <div class="project-thumb">
-                            <img src="x1.jpg" alt="Civehub project preview" loading="lazy">
-                        </div>
-                        <div class="project-body">
-                            <div class="project-meta">
-                                <span>Academic platform</span>
-                                <span>UDOM community</span>
-                            </div>
-                            <div class="project-title">
-                                <h3>Civehub</h3>
-                                <span class="project-link-icon" aria-hidden="true"><i class="fas fa-external-link-alt"></i></span>
-                            </div>
-                            <p>A platform for sharing academic materials and past papers so students can access useful resources faster.</p>
-                            <div class="tag-row">
-                                <span>Django</span>
-                                <span>Platform UI</span>
-                                <span>Student workflow</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="panel project-card reveal" style="--delay: .08s;" href="https://mkori.online" target="_blank" rel="noopener noreferrer" aria-label="Open Mikangaula project">
-                        <div class="project-thumb">
-                            <img src="x2.png" alt="Mikangaula project preview" loading="lazy">
-                        </div>
-                        <div class="project-body">
-                            <div class="project-meta">
-                                <span>E-commerce</span>
-                                <span>Product-focused UI</span>
-                            </div>
-                            <div class="project-title">
-                                <h3>Mikangaula</h3>
-                                <span class="project-link-icon" aria-hidden="true"><i class="fas fa-external-link-alt"></i></span>
-                            </div>
-                            <p>An e-commerce experience built to present products clearly and support business growth with a modern interface.</p>
-                            <div class="tag-row">
-                                <span>Laravel</span>
-                                <span>Commerce</span>
-                                <span>Responsive UX</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="panel project-card reveal" style="--delay: .16s;" href="https://civehub.ct.ws/public/index.php" target="_blank" rel="noopener noreferrer" aria-label="Open ShopAdmin project">
-                        <div class="project-thumb">
-                            <img src="x3.png" alt="ShopAdmin project preview" loading="lazy">
-                        </div>
-                        <div class="project-body">
-                            <div class="project-meta">
-                                <span>Admin workflow</span>
-                                <span>Business tools</span>
-                            </div>
-                            <div class="project-title">
-                                <h3>ShopAdmin</h3>
-                                <span class="project-link-icon" aria-hidden="true"><i class="fas fa-external-link-alt"></i></span>
-                            </div>
-                            <p>A PHP-based management system that helps track shop operations, daily records, and transactions more clearly.</p>
-                            <div class="tag-row">
-                                <span>PHP</span>
-                                <span>Dashboard</span>
-                                <span>Operations</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a class="panel project-card reveal" style="--delay: .24s;" href="https://wedinet.com" target="_blank" rel="noopener noreferrer" aria-label="Open Gethouse project">
-                        <div class="project-thumb">
-                            <img src="x4.png" alt="wedinet project preview" loading="lazy">
-                        </div>
-                        <div class="project-body">
-                            <div class="project-meta">
-                                <span>Property platform</span>
-                                <span>Discovery experience</span>
-                            </div>
-                            <div class="project-title">
-                                <h3>wedinet</h3>
-                                <span class="project-link-icon" aria-hidden="true"><i class="fas fa-external-link-alt"></i></span>
-                            </div>
-                            <p>a wedinet is the platform where you can introduce  your site  to be known easly by users. aslo helps to get reviews and feedbacks</p>
-                            <div class="tag-row">
-                                <span>Flutter Web</span>
-                                <span>Listings</span>
-                                <span>User flow</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section contact-section" id="contact">
-            <div class="site-shell contact-grid">
-                <article class="panel contact-cta reveal">
-                    <p class="panel-kicker">Contact</p>
-                    <h2>Let's build something clean, useful, and memorable.</h2>
-                    <p>
-                        If you need a portfolio refresh, a website, a dashboard, or a mobile app with stronger UI and better flow,
-                        I'm ready to help.
-                    </p>
-
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="mailto:mkorihafidhi@gmail.com">Send Email</a>
-                        <a class="button button-secondary" href="https://wa.me/255785226584" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-                    </div>
-                </article>
-
-                <div class="contact-stack">
-                    <article class="panel contact-card reveal" style="--delay: .08s;">
-                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
-                        <div>
-                            <h3>Location</h3>
-                            <p>Dodoma, Tanzania</p>
-                        </div>
-                    </article>
-
-                    <article class="panel contact-card reveal" style="--delay: .16s;">
-                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:mkorihafidhi@gmail.com">mkorihafidhi@gmail.com</a></p>
-                        </div>
-                    </article>
-
-                    <article class="panel contact-card reveal" style="--delay: .24s;">
-                        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
-                        <div>
-                            <h3>WhatsApp</h3>
-                            <p><a href="https://wa.me/255785226584" target="_blank" rel="noopener noreferrer">+255 785 226 584</a></p>
-                        </div>
-                    </article>
-
-                    <article class="panel social-card reveal" style="--delay: .32s;">
-                        <h3>Follow Me</h3>
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/profile.php?id=61557046421220" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://www.instagram.com/mkorih?igsh=YzljYTk1ODg3Zg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/hafidhi-mkori-681669329/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="site-shell footer-wrap">
-            <p>&copy; <span id="currentYear"></span> Hafidhi Mkori. Designed to feel cleaner, faster, and more alive.</p>
-            <a href="#home">Back to top</a>
+        <div class="logo-text">
+          <strong>Hafidhi Mkori</strong>
+          <small>Web &amp; Mobile Developer</small>
         </div>
-    </footer>
+      </a>
 
-    <a class="back-to-top" id="backToTop" href="#home" aria-label="Back to top">
-        <i class="bi bi-arrow-up"></i>
-    </a>
+      <button class="burger" id="navToggle" aria-label="Toggle navigation" aria-controls="siteNav" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
 
-    <script src="main.js"></script>
+      <nav class="nav" id="siteNav" aria-label="Primary navigation">
+        <a class="nav-a on" href="#home">Home</a>
+        <a class="nav-a" href="#about">About</a>
+        <a class="nav-a" href="#skills">Skills</a>
+        <a class="nav-a" href="#services">Services</a>
+        <a class="nav-a" href="#projects">Projects</a>
+        <a class="nav-a nav-cta" href="#contact">Let's Talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ── HERO ──────────────────────────────── -->
+    <section class="hero section" id="home">
+      <div class="shell hero-grid">
+        <div class="rv">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            Software Developer · UI-Focused · Tanzania
+          </div>
+          <h1>Designing polished <span class="grad">digital products</span> for web &amp; mobile.</h1>
+          <p class="hero-sub">I'm Hafidhi Abdala Mkori, a software engineering student and builder focused on interfaces that feel clean, backend systems that stay reliable, and mobile experiences that are easy to use.</p>
+          <div class="hero-btns">
+            <a class="btn btn-p" href="#projects"><i class="fas fa-arrow-right"></i> See My Work</a>
+            <a class="btn btn-s" href="mailto:mkorihafidhi@gmail.com">Start a Project</a>
+          </div>
+          <div class="hero-chips">
+            <div class="chip">
+              <span class="chip-lbl">Current focus</span>
+              <strong>Flutter · Laravel · Django · React</strong>
+            </div>
+            <div class="chip">
+              <span class="chip-lbl">Availability</span>
+              <strong>Freelance · Internships · Collab</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-vis rv" style="--d:.1s">
+          <div class="portrait-stage">
+            <div class="portrait-frame">
+              <img src="about.jpg" alt="Portrait of Hafidhi Mkori" loading="eager">
+            </div>
+            <div class="f-card f1">
+              <span class="lbl">UI Systems</span>
+              <strong>Readable layouts with motion</strong>
+            </div>
+            <div class="f-card f2">
+              <span class="lbl">Backend</span>
+              <strong>APIs, auth &amp; dashboards</strong>
+            </div>
+            <div class="f-card f3">
+              <span class="lbl">Mobile</span>
+              <strong>Flutter-first product builds</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS ──────────────────────────────── -->
+    <section class="stats">
+      <div class="shell stats-row">
+        <article class="stat-card rv">
+          <div class="stat-n">
+            <span class="stat-v" data-count="2">0</span>
+            <span class="stat-s">+</span>
+          </div>
+          <p>Years building practical web and mobile products.</p>
+        </article>
+        <article class="stat-card rv" style="--d:.08s">
+          <div class="stat-n">
+            <span class="stat-v" data-count="6">0</span>
+            <span class="stat-s">+</span>
+          </div>
+          <p>Core technologies used across frontend and backend work.</p>
+        </article>
+        <article class="stat-card rv" style="--d:.16s">
+          <div class="stat-n">
+            <span class="stat-v" data-count="4">0</span>
+            <span class="stat-s">+</span>
+          </div>
+          <p>Featured projects already shipped and shared online.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ──────────────────────────────── -->
+    <section class="section" id="about">
+      <div class="shell">
+        <div class="s-intro rv">
+          <div>
+            <p class="label">About</p>
+            <h2>I mix interface design thinking with practical engineering.</h2>
+          </div>
+          <p>I study BSc Software Engineering at the University of Dodoma and spend most of my build time working on useful interfaces, backend logic, and product flows that make sense for real users.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel pad rv">
+            <p class="label">Journey</p>
+            <h3 style="font-size:1.5rem;letter-spacing:-.03em;margin-bottom:20px">Learning fast, shipping often, improving with every project.</h3>
+            <div class="story-list">
+              <div class="s-item">
+                <span class="s-yr">2022–2026</span>
+                <div>
+                  <strong>University of Dodoma</strong>
+                  <p>BSc Software Engineering with hands-on product work in web and mobile development.</p>
+                </div>
+              </div>
+              <div class="s-item">
+                <span class="s-yr">Since 2023</span>
+                <div>
+                  <strong>Full-stack product building</strong>
+                  <p>Designing interfaces, building APIs, and turning ideas into working applications.</p>
+                </div>
+              </div>
+              <div class="s-item">
+                <span class="s-yr">Now</span>
+                <div>
+                  <strong>Open to collaboration</strong>
+                  <p>Available for freelance work, student-friendly product teams, and real-world software challenges.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel pad rv" style="--d:.1s">
+            <p class="label">Quick Profile</p>
+            <h3 style="font-size:1.35rem;letter-spacing:-.02em;margin-bottom:18px">Human-centered, implementation-minded, comfortable across the stack.</h3>
+            <div class="mini-g">
+              <div><span>Location</span><strong>Dodoma, Tanzania</strong></div>
+              <div><span>Email</span><strong>mkorihafidhi@gmail.com</strong></div>
+              <div><span>Phone</span><strong>+255 785 226 584</strong></div>
+              <div><span>Status</span><strong style="color:var(--teal)">✦ Available</strong></div>
+            </div>
+            <div class="focus-g">
+              <div class="focus-c"><i class="fas fa-paint-brush"></i><h4>Interface Craft</h4><p>Clear hierarchy, better spacing, animation that supports user flow.</p></div>
+              <div class="focus-c"><i class="fas fa-server"></i><h4>Backend Logic</h4><p>Reliable business rules, auth flows, admin tools, and APIs.</p></div>
+              <div class="focus-c"><i class="fas fa-mobile-alt"></i><h4>Mobile Thinking</h4><p>Flutter delivery with real usability in mind.</p></div>
+              <div class="focus-c"><i class="fas fa-rocket"></i><h4>Product Mindset</h4><p>Fast iteration, practical decisions, bias toward launching.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SKILLS ─────────────────────────────── -->
+    <section class="section alt" id="skills">
+      <div class="shell">
+        <div class="s-intro rv">
+          <div>
+            <p class="label">Skills</p>
+            <h2>Tools and technologies I rely on to ship confidently.</h2>
+          </div>
+          <p>My strongest work sits where product design, frontend polish, and backend structure meet. These are the stacks I use most often.</p>
+        </div>
+        <div class="skills-g">
+          <div class="skill-list">
+            <article class="sk rv"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-dj"><i class="fab fa-python"></i></span><div><h3>Django</h3><p>Business logic, APIs, admin tools</p></div></div><span class="sk-pct">63%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:63%"></span></div></article>
+            <article class="sk rv" style="--d:.05s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-fl"><i class="fas fa-mobile-alt"></i></span><div><h3>Flutter</h3><p>Mobile apps with smooth UI flows</p></div></div><span class="sk-pct">87%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:87%"></span></div></article>
+            <article class="sk rv" style="--d:.1s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-nd"><i class="fab fa-node-js"></i></span><div><h3>Node.js</h3><p>Utilities, APIs, and runtime flexibility</p></div></div><span class="sk-pct">57%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:57%"></span></div></article>
+            <article class="sk rv" style="--d:.15s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-re"><i class="fab fa-react"></i></span><div><h3>React</h3><p>Interactive frontend components</p></div></div><span class="sk-pct">70%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:70%"></span></div></article>
+            <article class="sk rv" style="--d:.2s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-la"><i class="fab fa-laravel"></i></span><div><h3>Laravel</h3><p>Web products and admin panels</p></div></div><span class="sk-pct">75%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:75%"></span></div></article>
+            <article class="sk rv" style="--d:.25s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-ui"><i class="fas fa-paint-brush"></i></span><div><h3>UI &amp; UX</h3><p>Layout, clarity, interaction patterns</p></div></div><span class="sk-pct">78%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:78%"></span></div></article>
+          </div>
+
+          <aside class="panel pad rv" style="--d:.12s">
+            <p class="label">Toolbox</p>
+            <h3 class="toolbox">Stack I use to move from concept to working product.</h3>
+            <div class="tag-cloud">
+              <span>Flutter</span><span>Django</span><span>Laravel</span><span>React</span><span>Node.js</span><span>PHP</span><span>MySQL</span><span>REST APIs</span><span>Bootstrap</span><span>Responsive UI</span>
+            </div>
+            <div class="flow">
+              <div class="flow-i"><strong>01. Product structure</strong><p>I start from layout, flow, and real content before decoration.</p></div>
+              <div class="flow-i"><strong>02. Clean implementation</strong><p>I connect frontend decisions to practical backend logic early.</p></div>
+              <div class="flow-i"><strong>03. Finishing polish</strong><p>I refine motion, spacing, responsiveness, and clarity before launch.</p></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES ───────────────────────────── -->
+    <section class="section" id="services">
+      <div class="shell">
+        <div class="s-intro rv">
+          <div>
+            <p class="label">Services</p>
+            <h2>What I can build for you.</h2>
+          </div>
+          <p>I work best on product-focused builds where interface quality matters just as much as the code behind it.</p>
+        </div>
+        <div class="srv-g">
+          <article class="panel srv rv">
+            <div class="srv-num">01</div>
+            <h3>Web Development</h3>
+            <p>I create websites and dashboards with clean frontends and structured backend logic.</p>
+            <ul class="srv-pts"><li>Django, Laravel, React builds</li><li>Admin tools and business workflows</li><li>Responsive interfaces with stronger UX</li></ul>
+          </article>
+          <article class="panel srv rv" style="--d:.08s">
+            <div class="srv-num">02</div>
+            <h3>Mobile Applications</h3>
+            <p>I build mobile products that feel fast, usable, and visually balanced across screen sizes.</p>
+            <ul class="srv-pts"><li>Flutter app development</li><li>Modern mobile UI design</li><li>User-friendly flows and screens</li></ul>
+          </article>
+          <article class="panel srv rv" style="--d:.16s">
+            <div class="srv-num">03</div>
+            <h3>UI Refresh &amp; Polish</h3>
+            <p>I improve existing interfaces with clearer hierarchy, better motion, and more attractive layouts.</p>
+            <ul class="srv-pts"><li>Portfolio and landing page redesigns</li><li>Animation and interaction improvements</li><li>Better mobile and desktop experience</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS ───────────────────────────── -->
+    <section class="section alt" id="projects">
+      <div class="shell">
+        <div class="s-intro rv">
+          <div>
+            <p class="label">Projects</p>
+            <h2>Selected work with real product intent.</h2>
+          </div>
+          <p>These projects show the kind of web and mobile experiences I like building: clear purpose, usable interfaces, and practical implementation.</p>
+        </div>
+        <div class="proj-g">
+          <a class="panel proj-card rv" href="https://civehub.store" target="_blank" rel="noopener noreferrer" aria-label="Civehub project">
+            <div class="proj-img"><img src="x1.jpg" alt="Civehub" loading="lazy"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Academic</span><span>UDOM</span></div>
+              <div class="proj-title"><h3>Civehub</h3><span class="proj-icon"><i class="fas fa-external-link-alt"></i></span></div>
+              <p>A platform for sharing academic materials and past papers so students can access useful resources faster.</p>
+              <div class="stack-tags"><span>Django</span><span>Platform UI</span><span>Student workflow</span></div>
+            </div>
+          </a>
+          <a class="panel proj-card rv" style="--d:.08s" href="https://mkori.online" target="_blank" rel="noopener noreferrer" aria-label="Mikangaula project">
+            <div class="proj-img"><img src="x2.png" alt="Mikangaula" loading="lazy"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>E-commerce</span><span>Product UI</span></div>
+              <div class="proj-title"><h3>Mikangaula</h3><span class="proj-icon"><i class="fas fa-external-link-alt"></i></span></div>
+              <p>An e-commerce experience built to present products clearly and support business growth with a modern interface.</p>
+              <div class="stack-tags"><span>Laravel</span><span>Commerce</span><span>Responsive UX</span></div>
+            </div>
+          </a>
+          <a class="panel proj-card rv" style="--d:.16s" href="https://civehub.ct.ws/public/index.php" target="_blank" rel="noopener noreferrer" aria-label="ShopAdmin project">
+            <div class="proj-img"><img src="x3.png" alt="ShopAdmin" loading="lazy"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Admin</span><span>Business tools</span></div>
+              <div class="proj-title"><h3>ShopAdmin</h3><span class="proj-icon"><i class="fas fa-external-link-alt"></i></span></div>
+              <p>A PHP-based management system that helps track shop operations, daily records, and transactions more clearly.</p>
+              <div class="stack-tags"><span>PHP</span><span>Dashboard</span><span>Operations</span></div>
+            </div>
+          </a>
+          <a class="panel proj-card rv" style="--d:.24s" href="https://wedinet.com" target="_blank" rel="noopener noreferrer" aria-label="wedinet project">
+            <div class="proj-img"><img src="x4.png" alt="wedinet" loading="lazy"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Platform</span><span>Discovery</span></div>
+              <div class="proj-title"><h3>wedinet</h3><span class="proj-icon"><i class="fas fa-external-link-alt"></i></span></div>
+              <p>A platform where you can introduce your site to be easily discovered by users, and collect reviews and feedback.</p>
+              <div class="stack-tags"><span>Flutter Web</span><span>Listings</span><span>User flow</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ────────────────────────────── -->
+    <section class="section" id="contact">
+      <div class="shell cta-g">
+        <article class="panel cta-main rv">
+          <p class="label">Contact</p>
+          <h2>Let's build something clean, useful, and memorable.</h2>
+          <p>If you need a portfolio refresh, a website, a dashboard, or a mobile app with stronger UI and better flow, I'm ready to help.</p>
+          <div class="cta-btns">
+            <a class="btn btn-p" href="mailto:mkorihafidhi@gmail.com"><i class="fas fa-envelope"></i> Send Email</a>
+            <a class="btn btn-s" href="https://wa.me/255785226584" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </article>
+
+        <div class="cta-stack">
+          <article class="panel c-card rv" style="--d:.08s">
+            <span class="c-ico"><i class="fas fa-map-marker-alt"></i></span>
+            <div><h3>Location</h3><p>Dodoma, Tanzania</p></div>
+          </article>
+          <article class="panel c-card rv" style="--d:.14s">
+            <span class="c-ico"><i class="fas fa-envelope"></i></span>
+            <div><h3>Email</h3><a href="mailto:mkorihafidhi@gmail.com">mkorihafidhi@gmail.com</a></div>
+          </article>
+          <article class="panel c-card rv" style="--d:.20s">
+            <span class="c-ico"><i class="fas fa-phone-alt"></i></span>
+            <div><h3>WhatsApp</h3><a href="https://wa.me/255785226584" target="_blank" rel="noopener noreferrer">+255 785 226 584</a></div>
+          </article>
+          <article class="panel soc-card rv" style="--d:.26s">
+            <h3>Follow Me</h3>
+            <div class="soc-links">
+              <a href="https://www.facebook.com/profile.php?id=61557046421220" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/mkorih?igsh=YzljYTk1ODg3Zg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/hafidhi-mkori-681669329/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────── -->
+  <footer class="ftr">
+    <div class="shell ftr-inner">
+      <div class="ftr-brand">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="fl1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00d4b4"/><stop offset="1" stop-color="#f5a623"/>
+            </linearGradient>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#fl1)" opacity=".08"/>
+          <rect x=".6" y=".6" width="42.8" height="42.8" rx="11.4" stroke="url(#fl1)" stroke-width="1.2"/>
+          <rect x="9" y="9" width="5" height="26" rx="2" fill="url(#fl1)"/>
+          <rect x="9" y="19.5" width="16" height="5" rx="2" fill="url(#fl1)"/>
+          <rect x="20" y="9" width="5" height="26" rx="2" fill="url(#fl1)"/>
+          <rect x="28" y="9" width="4.5" height="26" rx="2" fill="url(#fl1)" opacity=".9"/>
+          <path d="M28 9 L32.5 17 L37 9" stroke="url(#fl1)" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+          <rect x="32.5" y="9" width="4.5" height="26" rx="2" fill="url(#fl1)" opacity=".9"/>
+        </svg>
+        <p>&copy; <span id="currentYear"></span> Hafidhi Mkori. Designed to feel cleaner, faster, and more alive.</p>
+      </div>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <a class="btt" id="backToTop" href="#home" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <!-- ── SCRIPTS ─────────────────────────────── -->
+  <script>
+  (() => {
+    const $ = id => document.getElementById(id);
+    const loader      = $("pageLoader");
+    const hdr         = $("siteHeader");
+    const burgerBtn   = $("navToggle");
+    const navEl       = $("siteNav");
+    const scrollBar   = $("scrollBar");
+    const bttBtn      = $("backToTop");
+    const PRM         = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const navLinks    = [...document.querySelectorAll(".nav .nav-a")].filter(l => !l.classList.contains("nav-cta"));
+    const allAnchors  = [...document.querySelectorAll('a[href^="#"]')];
+    const reveals     = document.querySelectorAll(".rv");
+    const statVals    = document.querySelectorAll(".stat-v[data-count]");
+    const skillFills  = document.querySelectorAll(".sk-fill");
+
+    /* NAV */
+    const closeNav = () => { navEl.classList.remove("open"); document.body.classList.remove("nav-open"); burgerBtn.setAttribute("aria-expanded","false"); burgerBtn.innerHTML='<i class="bi bi-list"></i>'; };
+    const openNav  = () => { navEl.classList.add("open");  document.body.classList.add("nav-open");    burgerBtn.setAttribute("aria-expanded","true");  burgerBtn.innerHTML='<i class="bi bi-x-lg"></i>'; };
+    burgerBtn.addEventListener("click", () => navEl.classList.contains("open") ? closeNav() : openNav());
+    document.addEventListener("click", e => { if (!hdr.contains(e.target) && navEl.classList.contains("open")) closeNav(); });
+    window.addEventListener("resize", () => { if (window.innerWidth > 960) closeNav(); });
+
+    const hdOffset = () => hdr.offsetHeight + 20;
+    allAnchors.forEach(a => {
+      a.addEventListener("click", e => {
+        const href = a.getAttribute("href");
+        if (!href || href === "#") return;
+        const tgt = document.querySelector(href);
+        if (!tgt) return;
+        e.preventDefault();
+        window.scrollTo({ top: tgt.getBoundingClientRect().top + window.scrollY - hdOffset(), behavior: PRM ? "auto" : "smooth" });
+        closeNav();
+      });
+    });
+
+    /* ACTIVE LINK */
+    const setActive = id => navLinks.forEach(l => { l.classList.toggle("on", l.getAttribute("href") === `#${id}`); });
+    const sections  = navLinks.map(l => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }), { rootMargin:"-38% 0px -48% 0px", threshold:.1 }).observe && sections.forEach(s => {
+      new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }), { rootMargin:"-38% 0px -48% 0px", threshold:.1 }).observe(s);
+    });
+
+    /* SCROLL STATE */
+    const onScroll = () => {
+      const st = window.scrollY;
+      const sh = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.transform = `scaleX(${sh > 0 ? st / sh : 0})`;
+      bttBtn.classList.toggle("on", st > 480);
+      hdr.classList.toggle("scrolled", st > 16);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    /* COUNT UP */
+    const countUp = el => {
+      if (el.dataset.animated) return;
+      el.dataset.animated = "1";
+      const target = +el.dataset.count;
+      if (PRM) { el.textContent = target; return; }
+      const dur = 1400, t0 = performance.now();
+      const tick = now => {
+        const p = Math.min((now - t0) / dur, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = target;
+      };
+      requestAnimationFrame(tick);
+    };
+
+    /* SKILL BARS */
+    const animateBar = el => { const f = el.querySelector(".sk-fill"); if (f) f.style.width = getComputedStyle(f).getPropertyValue("--progress").trim() || f.style.getPropertyValue("--progress"); };
+
+    if (PRM) {
+      reveals.forEach(el => { el.classList.add("show"); animateBar(el); });
+      statVals.forEach(countUp);
+    } else {
+      const revObs = new IntersectionObserver((es, obs) => es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("show"); animateBar(e.target); obs.unobserve(e.target); }
+      }), { threshold:.12, rootMargin:"0px 0px -8% 0px" });
+      reveals.forEach(el => revObs.observe(el));
+
+      const statObs = new IntersectionObserver((es, obs) => es.forEach(e => {
+        if (e.isIntersecting) { countUp(e.target); obs.unobserve(e.target); }
+      }), { threshold:.5 });
+      statVals.forEach(el => statObs.observe(el));
+    }
+
+    /* LOADER */
+    window.addEventListener("load", () => setTimeout(() => loader && loader.classList.add("out"), 300));
+
+    /* YEAR */
+    $("currentYear").textContent = new Date().getFullYear();
+  })();
+  </script>
 </body>
 </html>
