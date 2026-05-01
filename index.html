@@ -528,6 +528,7 @@
     .proj-card{display:block;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
     .proj-card:hover{transform:translateY(-6px);border-color:rgba(0,212,180,.22);box-shadow:0 0 50px rgba(0,212,180,.07),var(--s-card)}
     .proj-img{
+      display:flex;justify-content:center;
       padding:18px 18px 0;
       background:linear-gradient(145deg,rgba(0,212,180,.04),rgba(245,166,35,.03));
     }
@@ -535,6 +536,11 @@
       width:100%;aspect-ratio:16/10;object-fit:cover;
       border-radius:var(--r-lg) var(--r-lg) 0 0;
       border:1px solid var(--line);
+    }
+    .proj-img.is-mobile img{
+      width:auto;max-width:100%;height:min(520px,110vw);
+      aspect-ratio:auto;object-fit:contain;
+      background:linear-gradient(180deg,rgba(11,18,37,.92),rgba(23,32,64,.9));
     }
     .proj-body{padding:22px}
     .proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
@@ -679,6 +685,7 @@
       .hero-btns{display:grid}
       .btt{right:13px;bottom:13px}
       .pad,.srv,.cta-main,.c-card,.soc-card{padding:22px}
+      .proj-img.is-mobile img{height:min(440px,120vw)}
     }
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
@@ -1014,6 +1021,24 @@
               <div class="proj-title"><h3>wedinet</h3><span class="proj-icon"><i class="fas fa-external-link-alt"></i></span></div>
               <p>A platform where you can introduce your site to be easily discovered by users, and collect reviews and feedback.</p>
               <div class="stack-tags"><span>Flutter Web</span><span>Listings</span><span>User flow</span></div>
+            </div>
+          </a>
+          <a class="panel proj-card rv" style="--d:.32s" href="https://mkori.online/myapps/gpa_clt.apk" target="_blank" rel="noopener noreferrer" aria-label="GPA Calculator app">
+            <div class="proj-img is-mobile"><img src="gpa_clt.jpg" alt="GPA Calculator app preview" loading="lazy"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Student tool</span><span>University</span></div>
+              <div class="proj-title"><h3>GPA Calculator</h3><span class="proj-icon"><i class="fas fa-external-link-alt"></i></span></div>
+              <p>An app used by university students to calculate GPA more easily and make better academic decisions from their results.</p>
+              <div class="stack-tags"><span>Android app</span><span>GPA planning</span><span>Student workflow</span></div>
+            </div>
+          </a>
+          <a class="panel proj-card rv" style="--d:.40s" href="https://mkori.online/myapps/gethouse.apk" target="_blank" rel="noopener noreferrer" aria-label="GetHouse app">
+            <div class="proj-img is-mobile"><img src="Gethouse.jpg" alt="GetHouse app preview" loading="lazy"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Housing</span><span>Tanzania</span></div>
+              <div class="proj-title"><h3>GetHouse</h3><span class="proj-icon"><i class="fas fa-external-link-alt"></i></span></div>
+              <p>A Flutter and Laravel app that helps users find rental houses more easily and apply filters across different locations in Tanzania.</p>
+              <div class="stack-tags"><span>Flutter</span><span>Laravel</span><span>Rental search</span></div>
             </div>
           </a>
         </div>
