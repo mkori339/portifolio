@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hafidhi Mkori | Creative Software Developer</title>
-  <meta name="description" content="Portfolio of Hafidhi Mkori, a software developer building polished web and mobile experiences from Tanzania.">
-  <meta name="theme-color" content="#060b18">
+  <title>Hafidhi Mkori | Web &amp; Mobile Developer</title>
+  <meta name="description" content="Portfolio of Hafidhi Mkori, a web and mobile developer building reliable websites, APIs, and Flutter applications from Tanzania.">
+  <meta name="theme-color" content="#f7f9fc">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,16 +14,16 @@
   <style>
     /* ── DESIGN TOKENS ─────────────────────────────────────────── */
     :root {
-      /* Core palette: deep navy + electric teal + amber gold */
-      --night:   #060b18;
-      --navy:    #0b1225;
-      --navy2:   #0f1a30;
-      --navy3:   #172040;
+      /* Core palette: light slate + teal + amber */
+      --night:   #f7f9fc;
+      --navy:    #ffffff;
+      --navy2:   #f2f6fb;
+      --navy3:   #e5edf7;
 
-      --teal:    #00d4b4;
-      --teal2:   #00b89c;
-      --teal-lo: rgba(0,212,180,.12);
-      --teal-gl: rgba(0,212,180,.30);
+      --teal:    #0b9f8a;
+      --teal2:   #078675;
+      --teal-lo: rgba(11,159,138,.13);
+      --teal-gl: rgba(11,159,138,.22);
 
       --amber:   #f5a623;
       --amber2:  #e8941a;
@@ -33,10 +33,10 @@
       --rose:    #ff5c7c;
       --violet:  #7c6bff;
 
-      --ink:     #e8f0ff;
-      --ink2:    rgba(232,240,255,.65);
-      --ink3:    rgba(232,240,255,.38);
-      --line:    rgba(232,240,255,.07);
+      --ink:     #16243a;
+      --ink2:    rgba(22,36,58,.72);
+      --ink3:    rgba(22,36,58,.52);
+      --line:    rgba(22,36,58,.12);
 
       /* Gradients */
       --g-ta:  linear-gradient(135deg,var(--teal) 0%,var(--amber) 100%);
@@ -44,9 +44,9 @@
       --g-glow:radial-gradient(circle,var(--teal-gl),transparent 68%);
 
       /* Shadows */
-      --s-card: 0 2px 0 rgba(255,255,255,.04) inset, 0 12px 48px rgba(0,0,0,.45);
-      --s-teal: 0 0 0 1px var(--teal-lo), 0 12px 40px rgba(0,0,0,.4);
-      --s-glow: 0 0 32px var(--teal-gl), 0 8px 24px rgba(0,0,0,.4);
+      --s-card: 0 1px 0 rgba(255,255,255,.9) inset, 0 12px 40px rgba(22,36,58,.10);
+      --s-teal: 0 0 0 1px var(--teal-lo), 0 12px 32px rgba(22,36,58,.12);
+      --s-glow: 0 0 28px var(--teal-gl), 0 8px 20px rgba(22,36,58,.14);
 
       --r-2xl: 28px;
       --r-xl:  20px;
@@ -70,9 +70,9 @@
       content:"";
       position:fixed;inset:0;
       background:
-        radial-gradient(ellipse 80% 60% at 10% 0%,  rgba(0,212,180,.10) 0%,transparent 60%),
-        radial-gradient(ellipse 60% 80% at 90% 30%,  rgba(245,166,35,.07) 0%,transparent 60%),
-        radial-gradient(ellipse 50% 50% at 50% 90%,  rgba(124,107,255,.06) 0%,transparent 60%),
+        radial-gradient(ellipse 80% 60% at 10% 0%,  rgba(11,159,138,.12) 0%,transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 30%,  rgba(245,166,35,.10) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 50% at 50% 90%,  rgba(124,107,255,.07) 0%,transparent 60%),
         var(--night);
       pointer-events:none;z-index:0;
     }
@@ -80,7 +80,7 @@
     body::after{
       content:"";
       position:fixed;inset:0;
-      background-image:radial-gradient(rgba(232,240,255,.08) 1px,transparent 1px);
+      background-image:radial-gradient(rgba(22,36,58,.09) 1px,transparent 1px);
       background-size:28px 28px;
       mask-image:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,transparent 80%);
       pointer-events:none;z-index:0;
@@ -98,11 +98,11 @@
     /* ── LAYOUT ────────────────────────────────────────────────── */
     .shell{width:min(var(--container),calc(100% - 44px));margin:0 auto;position:relative;z-index:1}
     .section{padding:112px 0;position:relative}
-    .alt{background:rgba(255,255,255,.015);border-block:1px solid var(--line)}
+    .alt{background:rgba(229,237,247,.46);border-block:1px solid var(--line)}
 
     /* ── GLASS PANEL ───────────────────────────────────────────── */
     .panel{
-      background:rgba(15,26,48,.72);
+      background:rgba(255,255,255,.82);
       border:1px solid var(--line);
       border-radius:var(--r-2xl);
       box-shadow:var(--s-card);
@@ -112,7 +112,7 @@
     .panel::before{
       content:"";
       position:absolute;inset:0;
-      background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,transparent 55%);
+      background:linear-gradient(135deg,rgba(255,255,255,.72) 0%,transparent 55%);
       pointer-events:none;border-radius:inherit;
     }
 
@@ -184,7 +184,7 @@
     .hdr{
       position:sticky;top:0;z-index:100;
       padding:12px 0;
-      background:rgba(6,11,24,.85);
+      background:rgba(247,249,252,.88);
       backdrop-filter:blur(24px) saturate(180%);
       border-bottom:1px solid var(--line);
       transition:border-color .3s;
@@ -223,7 +223,7 @@
       font-size:.88rem;font-weight:500;color:var(--ink2);
       transition:color .2s,background .2s;
     }
-    .nav-a:hover,.nav-a.on{color:var(--ink);background:rgba(255,255,255,.06)}
+    .nav-a:hover,.nav-a.on{color:var(--ink);background:rgba(22,36,58,.06)}
     .nav-a.on{color:var(--teal)}
     .nav-cta{
       background:var(--g-ta);color:#fff !important;font-weight:700;
@@ -234,10 +234,10 @@
     .burger{
       display:none;width:42px;height:42px;
       border:1px solid var(--line);border-radius:var(--r-lg);
-      background:rgba(255,255,255,.04);color:var(--ink);
+      background:rgba(255,255,255,.72);color:var(--ink);
       font-size:1.25rem;transition:background .2s,border-color .2s;
     }
-    .burger:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
+    .burger:hover{background:rgba(22,36,58,.06);border-color:rgba(22,36,58,.16)}
 
     /* ── HERO ──────────────────────────────────────────────────── */
     .hero{padding-top:88px}
@@ -289,7 +289,7 @@
     }
     .btn-p:hover{color:#fff;box-shadow:0 0 44px var(--teal-gl),0 12px 36px rgba(0,0,0,.5)}
     .btn-s{
-      background:rgba(255,255,255,.06);
+      background:rgba(255,255,255,.74);
       border:1px solid var(--line);color:var(--ink);
     }
     .btn-s:hover{border-color:rgba(0,212,180,.3);background:rgba(0,212,180,.06)}
@@ -300,7 +300,7 @@
     }
     .chip{
       padding:16px 18px;border-radius:var(--r-xl);
-      background:rgba(255,255,255,.04);
+      background:rgba(255,255,255,.70);
       border:1px solid var(--line);
       transition:border-color .2s,background .2s;
     }
@@ -317,7 +317,7 @@
     .portrait-stage{
       position:relative;min-height:580px;
       border-radius:32px;padding:22px;
-      background:linear-gradient(145deg,rgba(15,26,48,.98) 0%,rgba(23,32,64,.95) 100%);
+      background:linear-gradient(145deg,rgba(255,255,255,.98) 0%,rgba(229,237,247,.95) 100%);
       border:1px solid var(--line);
       box-shadow:0 0 80px rgba(0,212,180,.07),var(--s-card);
       overflow:hidden;
@@ -352,9 +352,9 @@
       position:absolute;z-index:2;
       max-width:195px;padding:13px 15px;
       border-radius:var(--r-xl);
-      background:rgba(11,18,37,.9);
+      background:rgba(255,255,255,.92);
       border:1px solid rgba(0,212,180,.15);
-      box-shadow:0 0 20px rgba(0,212,180,.08),0 16px 40px rgba(0,0,0,.55);
+      box-shadow:0 0 20px rgba(11,159,138,.08),0 16px 40px rgba(22,36,58,.14);
       backdrop-filter:blur(18px);
       animation:float 8s ease-in-out infinite;
     }
@@ -377,7 +377,7 @@
     .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .stat-card{
       padding:26px 28px;border-radius:var(--r-2xl);
-      background:rgba(15,26,48,.75);
+      background:rgba(255,255,255,.82);
       border:1px solid var(--line);
       box-shadow:var(--s-card);
       transition:border-color .25s,transform .25s;
@@ -425,7 +425,7 @@
     .mini-g{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
     .mini-g div{
       padding:15px 16px;border-radius:var(--r-lg);
-      background:rgba(255,255,255,.03);border:1px solid var(--line);
+      background:rgba(255,255,255,.72);border:1px solid var(--line);
     }
     .mini-g span{
       display:block;margin-bottom:5px;
@@ -437,7 +437,7 @@
     .focus-g{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
     .focus-c{
       padding:17px;border-radius:var(--r-lg);
-      background:rgba(255,255,255,.025);border:1px solid var(--line);
+      background:rgba(255,255,255,.66);border:1px solid var(--line);
       transition:border-color .2s,background .2s,transform .2s;
     }
     .focus-c:hover{border-color:rgba(0,212,180,.2);background:rgba(0,212,180,.04);transform:translateY(-2px)}
@@ -454,7 +454,7 @@
     .skill-list{display:grid;gap:12px}
     .sk{
       padding:18px 22px;border-radius:var(--r-xl);
-      background:rgba(15,26,48,.75);border:1px solid var(--line);
+      background:rgba(255,255,255,.82);border:1px solid var(--line);
       transition:border-color .2s,transform .2s;
     }
     .sk:hover{border-color:rgba(0,212,180,.2);transform:translateX(5px)}
@@ -473,7 +473,7 @@
     .sk h3{font-size:.92rem;margin-bottom:2px;color:var(--ink)}
     .sk p{font-size:.8rem}
     .sk-pct{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--ink2)}
-    .sk-bar{height:4px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+    .sk-bar{height:4px;border-radius:999px;background:rgba(22,36,58,.10);overflow:hidden}
     .sk-fill{
       display:block;height:100%;width:0;border-radius:999px;
       background:var(--g-ta);
@@ -485,7 +485,7 @@
     .tag-cloud{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
     .tag-cloud span{
       padding:5px 13px;border-radius:999px;
-      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      background:rgba(255,255,255,.72);border:1px solid var(--line);
       font-size:.8rem;color:var(--ink2);
       transition:border-color .2s,color .2s,background .2s;
     }
@@ -493,7 +493,7 @@
     .flow{display:grid;gap:13px}
     .flow-i{
       padding:13px 15px;border-radius:var(--r-lg);
-      background:rgba(255,255,255,.02);
+      background:rgba(255,255,255,.58);
       border-left:2px solid var(--teal);
     }
     .flow-i strong{display:block;margin-bottom:4px;font-size:.88rem;color:var(--ink)}
@@ -540,7 +540,7 @@
     .proj-img.is-mobile img{
       width:auto;max-width:100%;height:min(520px,110vw);
       aspect-ratio:auto;object-fit:contain;
-      background:linear-gradient(180deg,rgba(11,18,37,.92),rgba(23,32,64,.9));
+      background:linear-gradient(180deg,rgba(242,246,251,.96),rgba(229,237,247,.94));
     }
     .proj-body{padding:22px}
     .proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
@@ -555,7 +555,7 @@
     .proj-icon{
       display:grid;place-items:center;
       width:34px;height:34px;border-radius:var(--r-md);
-      background:rgba(255,255,255,.05);border:1px solid var(--line);
+      background:rgba(255,255,255,.78);border:1px solid var(--line);
       color:var(--ink2);font-size:.78rem;
       transition:background .2s,color .2s,border-color .2s;
     }
@@ -564,7 +564,7 @@
     .stack-tags{display:flex;flex-wrap:wrap;gap:5px}
     .stack-tags span{
       padding:3px 10px;border-radius:999px;
-      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      background:rgba(255,255,255,.72);border:1px solid var(--line);
       font-size:.76rem;color:var(--ink2);
     }
 
@@ -572,7 +572,7 @@
     .cta-g{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:18px}
     .cta-main{
       padding:38px 36px;
-      background:linear-gradient(145deg,rgba(15,26,48,.98),rgba(23,32,64,.95));
+      background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(229,237,247,.95));
       border-color:rgba(0,212,180,.12);position:relative;overflow:hidden;
     }
     .cta-main::after{
@@ -604,7 +604,7 @@
     .soc-links a{
       display:grid;place-items:center;
       width:40px;height:40px;border-radius:var(--r-md);
-      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      background:rgba(255,255,255,.72);border:1px solid var(--line);
       transition:transform .2s,background .2s,border-color .2s,color .2s;
     }
     .soc-links a:hover{background:var(--g-ta);color:#fff;border-color:transparent;transform:translateY(-3px)}
@@ -646,7 +646,7 @@
       .nav{
         position:absolute;top:calc(100% + 10px);left:0;right:0;
         display:grid;gap:5px;padding:13px;
-        background:rgba(11,18,37,.98);
+        background:rgba(255,255,255,.98);
         border:1px solid var(--line);border-radius:22px;
         box-shadow:var(--s-card);backdrop-filter:blur(28px);
         opacity:0;visibility:hidden;transform:translateY(-8px);
@@ -779,10 +779,10 @@
         <div class="rv">
           <div class="status-pill">
             <span class="status-dot"></span>
-            Software Developer · UI-Focused · Tanzania
+            Web &amp; Mobile Developer · Tanzania
           </div>
-          <h1>Designing polished <span class="grad">digital products</span> for web &amp; mobile.</h1>
-          <p class="hero-sub">I'm Hafidhi Abdala Mkori, a software engineering student and builder focused on interfaces that feel clean, backend systems that stay reliable, and mobile experiences that are easy to use.</p>
+          <h1>Building reliable <span class="grad">websites &amp; mobile apps</span>.</h1>
+          <p class="hero-sub">I'm Hafidhi Abdala Mkori, a software engineering student who develops responsive websites, backend systems, and Flutter applications that solve practical problems.</p>
           <div class="hero-btns">
             <a class="btn btn-p" href="#projects"><i class="fas fa-arrow-right"></i> See My Work</a>
             <a class="btn btn-s" href="mailto:mkorihafidhi@gmail.com">Start a Project</a>
@@ -805,8 +805,8 @@
               <img src="about.jpg" alt="Portrait of Hafidhi Mkori" loading="eager">
             </div>
             <div class="f-card f1">
-              <span class="lbl">UI Systems</span>
-              <strong>Readable layouts with motion</strong>
+              <span class="lbl">Web Development</span>
+              <strong>Responsive websites and web applications</strong>
             </div>
             <div class="f-card f2">
               <span class="lbl">Backend</span>
@@ -854,7 +854,7 @@
         <div class="s-intro rv">
           <div>
             <p class="label">About</p>
-            <h2>I mix interface design thinking with practical engineering.</h2>
+            <h2>I build practical web and mobile software for real users.</h2>
           </div>
           <p>I study BSc Software Engineering at the University of Dodoma and spend most of my build time working on useful interfaces, backend logic, and product flows that make sense for real users.</p>
         </div>
@@ -874,7 +874,7 @@
                 <span class="s-yr">Since 2023</span>
                 <div>
                   <strong>Full-stack product building</strong>
-                  <p>Designing interfaces, building APIs, and turning ideas into working applications.</p>
+                  <p>Building websites, mobile apps, APIs, and databases that turn ideas into working software.</p>
                 </div>
               </div>
               <div class="s-item">
@@ -889,7 +889,7 @@
 
           <article class="panel pad rv" style="--d:.1s">
             <p class="label">Quick Profile</p>
-            <h3 style="font-size:1.35rem;letter-spacing:-.02em;margin-bottom:18px">Human-centered, implementation-minded, comfortable across the stack.</h3>
+            <h3 style="font-size:1.35rem;letter-spacing:-.02em;margin-bottom:18px">Development-focused, practical, and comfortable across the stack.</h3>
             <div class="mini-g">
               <div><span>Location</span><strong>Dodoma, Tanzania</strong></div>
               <div><span>Email</span><strong>mkorihafidhi@gmail.com</strong></div>
@@ -897,10 +897,10 @@
               <div><span>Status</span><strong style="color:var(--teal)">✦ Available</strong></div>
             </div>
             <div class="focus-g">
-              <div class="focus-c"><i class="fas fa-paint-brush"></i><h4>Interface Craft</h4><p>Clear hierarchy, better spacing, animation that supports user flow.</p></div>
+              <div class="focus-c"><i class="fas fa-code"></i><h4>Website Development</h4><p>Responsive websites, dashboards, and web applications built for everyday use.</p></div>
               <div class="focus-c"><i class="fas fa-server"></i><h4>Backend Logic</h4><p>Reliable business rules, auth flows, admin tools, and APIs.</p></div>
-              <div class="focus-c"><i class="fas fa-mobile-alt"></i><h4>Mobile Thinking</h4><p>Flutter delivery with real usability in mind.</p></div>
-              <div class="focus-c"><i class="fas fa-rocket"></i><h4>Product Mindset</h4><p>Fast iteration, practical decisions, bias toward launching.</p></div>
+              <div class="focus-c"><i class="fas fa-mobile-alt"></i><h4>Mobile Development</h4><p>Flutter applications for Android with clear, useful flows.</p></div>
+              <div class="focus-c"><i class="fas fa-rocket"></i><h4>Deployment &amp; Growth</h4><p>Practical iteration, testing, and improvements that keep products moving.</p></div>
             </div>
           </article>
         </div>
@@ -915,7 +915,7 @@
             <p class="label">Skills</p>
             <h2>Tools and technologies I rely on to ship confidently.</h2>
           </div>
-          <p>My strongest work sits where product design, frontend polish, and backend structure meet. These are the stacks I use most often.</p>
+          <p>My work combines frontend development, backend logic, and mobile development. These are the technologies I use most often.</p>
         </div>
         <div class="skills-g">
           <div class="skill-list">
@@ -924,7 +924,7 @@
             <article class="sk rv" style="--d:.1s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-nd"><i class="fab fa-node-js"></i></span><div><h3>Node.js</h3><p>Utilities, APIs, and runtime flexibility</p></div></div><span class="sk-pct">57%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:57%"></span></div></article>
             <article class="sk rv" style="--d:.15s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-re"><i class="fab fa-react"></i></span><div><h3>React</h3><p>Interactive frontend components</p></div></div><span class="sk-pct">70%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:70%"></span></div></article>
             <article class="sk rv" style="--d:.2s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-la"><i class="fab fa-laravel"></i></span><div><h3>Laravel</h3><p>Web products and admin panels</p></div></div><span class="sk-pct">75%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:75%"></span></div></article>
-            <article class="sk rv" style="--d:.25s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-ui"><i class="fas fa-paint-brush"></i></span><div><h3>UI &amp; UX</h3><p>Layout, clarity, interaction patterns</p></div></div><span class="sk-pct">78%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:78%"></span></div></article>
+            <article class="sk rv" style="--d:.25s"><div class="sk-top"><div class="sk-title"><span class="sk-ico ic-ui"><i class="fas fa-database"></i></span><div><h3>PHP &amp; MySQL</h3><p>Database-driven websites and business tools</p></div></div><span class="sk-pct">78%</span></div><div class="sk-bar"><span class="sk-fill" style="--progress:78%"></span></div></article>
           </div>
 
           <aside class="panel pad rv" style="--d:.12s">
@@ -934,9 +934,9 @@
               <span>Flutter</span><span>Django</span><span>Laravel</span><span>React</span><span>Node.js</span><span>PHP</span><span>MySQL</span><span>REST APIs</span><span>Bootstrap</span><span>Responsive UI</span>
             </div>
             <div class="flow">
-              <div class="flow-i"><strong>01. Product structure</strong><p>I start from layout, flow, and real content before decoration.</p></div>
-              <div class="flow-i"><strong>02. Clean implementation</strong><p>I connect frontend decisions to practical backend logic early.</p></div>
-              <div class="flow-i"><strong>03. Finishing polish</strong><p>I refine motion, spacing, responsiveness, and clarity before launch.</p></div>
+              <div class="flow-i"><strong>01. Plan the build</strong><p>I define the pages, features, and user requirements before development starts.</p></div>
+              <div class="flow-i"><strong>02. Develop the product</strong><p>I build the frontend, backend logic, APIs, and database structure together.</p></div>
+              <div class="flow-i"><strong>03. Test and launch</strong><p>I check responsiveness, functionality, and usability before release.</p></div>
             </div>
           </aside>
         </div>
@@ -951,26 +951,26 @@
             <p class="label">Services</p>
             <h2>What I can build for you.</h2>
           </div>
-          <p>I work best on product-focused builds where interface quality matters just as much as the code behind it.</p>
+          <p>I help turn ideas into useful software with maintainable code, practical features, and responsive experiences.</p>
         </div>
         <div class="srv-g">
           <article class="panel srv rv">
             <div class="srv-num">01</div>
             <h3>Web Development</h3>
-            <p>I create websites and dashboards with clean frontends and structured backend logic.</p>
-            <ul class="srv-pts"><li>Django, Laravel, React builds</li><li>Admin tools and business workflows</li><li>Responsive interfaces with stronger UX</li></ul>
+            <p>I build responsive websites, dashboards, and web applications with dependable frontend and backend code.</p>
+            <ul class="srv-pts"><li>Django, Laravel, React, and PHP builds</li><li>Admin tools and business workflows</li><li>Responsive pages for desktop and mobile</li></ul>
           </article>
           <article class="panel srv rv" style="--d:.08s">
             <div class="srv-num">02</div>
             <h3>Mobile Applications</h3>
-            <p>I build mobile products that feel fast, usable, and visually balanced across screen sizes.</p>
-            <ul class="srv-pts"><li>Flutter app development</li><li>Modern mobile UI design</li><li>User-friendly flows and screens</li></ul>
+            <p>I build Flutter applications for Android that are focused on useful features and clear user journeys.</p>
+            <ul class="srv-pts"><li>Flutter app development</li><li>API and database integration</li><li>Testing on real mobile screen sizes</li></ul>
           </article>
           <article class="panel srv rv" style="--d:.16s">
             <div class="srv-num">03</div>
-            <h3>UI Refresh &amp; Polish</h3>
-            <p>I improve existing interfaces with clearer hierarchy, better motion, and more attractive layouts.</p>
-            <ul class="srv-pts"><li>Portfolio and landing page redesigns</li><li>Animation and interaction improvements</li><li>Better mobile and desktop experience</li></ul>
+            <h3>Backend &amp; API Development</h3>
+            <p>I create the server-side logic that keeps websites and mobile apps secure, organised, and connected.</p>
+            <ul class="srv-pts"><li>REST APIs and authentication</li><li>MySQL databases and business logic</li><li>Admin panels and integrations</li></ul>
           </article>
         </div>
       </div>
@@ -1069,7 +1069,7 @@
         <article class="panel cta-main rv">
           <p class="label">Contact</p>
           <h2>Let's build something clean, useful, and memorable.</h2>
-          <p>If you need a portfolio refresh, a website, a dashboard, or a mobile app with stronger UI and better flow, I'm ready to help.</p>
+          <p>If you need a website, dashboard, backend system, or Flutter mobile app, I’m ready to help build it.</p>
           <div class="cta-btns">
             <a class="btn btn-p" href="mailto:mkorihafidhi@gmail.com"><i class="fas fa-envelope"></i> Send Email</a>
             <a class="btn btn-s" href="https://wa.me/255785226584" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
