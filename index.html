@@ -1170,7 +1170,7 @@
     /* NAV */
     const closeNav = () => { navEl.classList.remove("open"); document.body.classList.remove("nav-open"); burgerBtn.setAttribute("aria-expanded","false"); burgerBtn.innerHTML='<i class="bi bi-list"></i>'; };
     const openNav  = () => { navEl.classList.add("open");  document.body.classList.add("nav-open");    burgerBtn.setAttribute("aria-expanded","true");  burgerBtn.innerHTML='<i class="bi bi-x-lg"></i>'; };
-    burgerBtn.addEventListener("click", () => navEl.classList.contains("open") ? closeNav() : openNav());
+    burgerBtn.addEventListener("click", e => { e.stopPropagation(); navEl.classList.contains("open") ? closeNav() : openNav(); });
     document.addEventListener("click", e => { if (!hdr.contains(e.target) && navEl.classList.contains("open")) closeNav(); });
     window.addEventListener("resize", () => { if (window.innerWidth > 960) closeNav(); });
 
